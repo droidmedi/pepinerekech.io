@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbokech - Pépinière à Marrakech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #27ae60);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        /* Barre d'outils */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .selection-info {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .selection-count {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.2em;
+        }
+
+        #commande-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        #commande-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        #commande-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .filtres {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .filtre-btn {
+            padding: 12px 25px;
+            border: none;
+            background: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .filtre-btn:hover,
+        .filtre-btn.active {
+            background: #27ae60;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+        }
+
+        .grille-plantes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .carte-plante {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .carte-plante:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .carte-plante.selected {
+            border: 3px solid #27ae60;
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.3);
+        }
+
+        .carte-plante img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .carte-contenu {
+            padding: 20px;
+        }
+
+        .carte-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .carte-header h3 {
+            color: #2c3e50;
+            font-size: 1.3em;
+            margin: 0;
+        }
+
+        .plante-id-custom {
+            background: #48bb78;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: white;
+            font-family: monospace;
+            font-weight: bold;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .prix {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 15px 0;
+        }
+
+        .categorie {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ecf0f1;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: #7f8c8d;
+            text-transform: capitalize;
+        }
+
+        .selection-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .select-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #27ae60;
+        }
+
+        .quantite-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+
+        .quantite-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quantite-btn:hover:not(:disabled) {
+            background: #27ae60;
+            color: white;
+        }
+
+        .quantite-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .quantite-input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .chargement, .aucun-resultat {
+            text-align: center;
+            padding: 60px;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+        }
+
+        .contact-info {
+            margin-bottom: 25px;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+
+        .admin-link {
+            margin-top: 25px;
+        }
+
+        .admin-link a {
+            color: #27ae60;
+            text-decoration: none;
+            font-size: 0.95em;
+            padding: 8px 20px;
+            border: 2px solid #27ae60;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .admin-link a:hover {
+            background: #27ae60;
+            color: white;
+        }
+
+        /* Modal de commande */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: #2d3748;
+            font-size: 1.5em;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #a0aec0;
+        }
+
+        .close-modal:hover {
+            color: #718096;
+        }
+
+        .resume-commande {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .resume-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .resume-item:last-child {
+            border-bottom: none;
+        }
+
+        .total {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #27ae60;
+            border-top: 2px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2em; }
+            .intro h2 { font-size: 1.8em; }
+            .grille-plantes { grid-template-columns: 1fr; }
+            .selection-info { width: 100%; }
+            .carte-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="nom-pepiniere">Arbokech</h1>
+        <p id="slogan">Votre pépinière à Marrakech</p>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Nos plantes</h2>
+            <p>Découvrez notre sélection d'arbres, fleurs et plantes d'intérieur</p>
+        </section>
+
+        <!-- Barre d'outils avec sélection -->
+        <div class="toolbar">
+            <div class="selection-info">
+                <span>🌱 Plantes sélectionnées : <span id="selection-count" class="selection-count">0</span></span>
+                <button id="commande-btn" disabled>
+                    <span>📋</span> Passer commande
+                </button>
+            </div>
+            
+            <div class="filtres" id="filtres-container">
+                <button class="filtre-btn active" data-categorie="tous">🌿 Tous</button>
+                <button class="filtre-btn" data-categorie="arbre">🌳 Arbres</button>
+                <button class="filtre-btn" data-categorie="fleur">🌸 Fleurs</button>
+                <button class="filtre-btn" data-categorie="plante">🌱 Plantes d'intérieur</button>
+            </div>
+        </div>
+
+        <div id="plantes-container" class="grille-plantes">
+            <div class="chargement">Chargement de nos merveilles végétales...</div>
+        </div>
+    </div>
+
+    <!-- Modal de récapitulatif de commande -->
+    <div id="commandeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📋 Récapitulatif de votre commande</h3>
+                <button class="close-modal" onclick="fermerModal()">&times;</button>
+            </div>
+            
+            <div id="resume-commande" class="resume-commande">
+                <!-- Rempli par JavaScript -->
+            </div>
+            
+            <button id="whatsapp-commande-btn" class="whatsapp-btn">
+                <span>📱</span> Envoyer la commande sur WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-info" id="contact-info">
+            <p id="contact-tel">📞 Téléphone: </p>
+            <p id="contact-email">✉️ Email: </p>
+            <p id="contact-adresse">📍 Adresse: </p>
+        </div>
+        <div class="admin-link">
+            <a href="admin.html">⚡ Espace administration</a>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK avec type="module" -->
+    <script type="module">
+        // Import des fonctions Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+
+        // ============================================
+        // CONFIGURATION FIREBASE
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyAEHRqmwfVoA_bXfHrKf2-iVD5HLsQPRck",
+            authDomain: "arbokech-7bef4.firebaseapp.com",
+            databaseURL: "https://arbokech-7bef4-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "arbokech-7bef4",
+            storageBucket: "arbokech-7bef4.firebasestorage.app",
+            messagingSenderId: "628982265968",
+            appId: "1:628982265968:web:5b9a6409da9993ab58dcb5",
+            measurementId: "G-EK2MT7ZVN5"
+        };
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // ============================================
+        // VARIABLES GLOBALES
+        // ============================================
+        let toutesLesPlantes = {};
+        let selection = {}; // { planteId: { quantite: 1, titre: "...", prix: 45, idPerso: "#0001" } }
+
+        // Numéro WhatsApp (format international sans le +)
+        const WHATSAPP_NUMBER = "212706765056";
+
+        // ============================================
+        // RÉFÉRENCES FIREBASE
+        // ============================================
+        const plantesRef = ref(database, 'plantes');
+        const configRef = ref(database, 'config');
+
+        // ============================================
+        // CHARGEMENT DE LA CONFIGURATION
+        // ============================================
+        onValue(configRef, (snapshot) => {
+            const config = snapshot.val();
+            if (config) {
+                document.getElementById('nom-pepiniere').textContent = config.nomPepiniere || 'Arbokech';
+                document.getElementById('slogan').textContent = config.slogan || 'Votre pépinière à Marrakech';
+                document.getElementById('contact-tel').innerHTML = `📞 Téléphone: ${config.telephone || 'Non renseigné'}`;
+                document.getElementById('contact-email').innerHTML = `✉️ Email: ${config.email || 'Non renseigné'}`;
+                document.getElementById('contact-adresse').innerHTML = `📍 Adresse: ${config.adresse || 'Non renseignée'}`;
+            }
+        });
+
+        // ============================================
+        // FONCTIONS DE SÉLECTION
+        // ============================================
+        
+        function mettreAJourCompteur() {
+            const count = Object.keys(selection).length;
+            document.getElementById('selection-count').textContent = count;
+            document.getElementById('commande-btn').disabled = count === 0;
+        }
+
+        function toggleSelection(planteId, titre, prix, idPerso, estSelectionne) {
+            if (estSelectionne) {
+                selection[planteId] = {
+                    quantite: 1,
+                    titre: titre,
+                    prix: prix || 0,
+                    idPerso: idPerso
+                };
+            } else {
+                delete selection[planteId];
+            }
+            mettreAJourCompteur();
+        }
+
+        function updateQuantite(planteId, nouvelleQuantite) {
+            if (selection[planteId]) {
+                selection[planteId].quantite = Math.max(1, nouvelleQuantite);
+            }
+        }
+
+        // ============================================
+        // AFFICHAGE DES PLANTES
+        // ============================================
+        
+        function afficherPlantes(plantesData, categorieFiltre = 'tous') {
+            const container = document.getElementById('plantes-container');
+            container.innerHTML = '';
+            
+            // Convertir l'objet en tableau
+            const plantesArray = [];
+            for (let id in plantesData) {
+                plantesArray.push({
+                    id: id,
+                    ...plantesData[id]
+                });
+            }
+
+            // Filtrer par catégorie
+            let plantesFiltrees = plantesArray;
+            if (categorieFiltre !== 'tous') {
+                plantesFiltrees = plantesArray.filter(p => p.categorie === categorieFiltre);
+            }
+
+            // Ne montrer que les plantes disponibles
+            plantesFiltrees = plantesFiltrees.filter(p => p.disponible !== false);
+
+            if (plantesFiltrees.length === 0) {
+                container.innerHTML = '<div class="aucun-resultat">🌱 Aucune plante dans cette catégorie pour le moment</div>';
+                return;
+            }
+
+            // Trier par ID personnalisé
+            plantesFiltrees.sort((a, b) => {
+                if (a.idPerso && b.idPerso) {
+                    return a.idPerso.localeCompare(b.idPerso);
+                }
+                return 0;
+            });
+
+            // Créer les cartes
+            plantesFiltrees.forEach(plante => {
+                const carte = document.createElement('div');
+                carte.className = 'carte-plante';
+                if (selection[plante.id]) {
+                    carte.classList.add('selected');
+                }
+                
+                const imageUrl = plante.imageUrl || 'https://via.placeholder.com/300x200?text=Arbokech';
+                const prixTexte = plante.prix ? 
+                    plante.prix.toFixed(2) + ' DH' : 
+                    'Prix sur demande';
+                
+                carte.innerHTML = `
+                    <img src="${imageUrl}" 
+                         alt="${plante.titre || 'Plante Arbokech'}" 
+                         onerror="this.src='https://via.placeholder.com/300x200?text=Image+non+disponible'">
+                    <div class="carte-contenu">
+                        <div class="carte-header">
+                            <h3>${plante.titre || 'Sans titre'}</h3>
+                            <span class="plante-id-custom">${plante.idPerso || '#'}</span>
+                        </div>
+                        <p class="description">${plante.description || 'Aucune description disponible'}</p>
+                        <p class="prix">${prixTexte}</p>
+                        <div>
+                            <span class="categorie">${plante.categorie || 'Non catégorisé'}</span>
+                        </div>
+                        <div class="selection-controls">
+                            <input type="checkbox" class="select-checkbox" data-id="${plante.id}" 
+                                   ${selection[plante.id] ? 'checked' : ''}>
+                            <span>Sélectionner</span>
+                            <div class="quantite-control" ${!selection[plante.id] ? 'style="opacity:0.3; pointer-events:none"' : ''}>
+                                <button class="quantite-btn" data-id="${plante.id}" data-action="decrease">-</button>
+                                <input type="number" class="quantite-input" data-id="${plante.id}" 
+                                       value="${selection[plante.id]?.quantite || 1}" min="1" 
+                                       ${!selection[plante.id] ? 'disabled' : ''}>
+                                <button class="quantite-btn" data-id="${plante.id}" data-action="increase">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(carte);
+            });
+
+            // Ajouter les événements
+            document.querySelectorAll('.select-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const id = e.target.dataset.id;
+                    const plante = plantesFiltrees.find(p => p.id === id);
+                    const carte = e.target.closest('.carte-plante');
+                    
+                    if (e.target.checked) {
+                        carte.classList.add('selected');
+                    } else {
+                        carte.classList.remove('selected');
+                    }
+                    
+                    const quantiteControl = carte.querySelector('.quantite-control');
+                    const quantiteInput = carte.querySelector('.quantite-input');
+                    const quantiteBtns = carte.querySelectorAll('.quantite-btn');
+                    
+                    if (e.target.checked) {
+                        quantiteControl.style.opacity = '1';
+                        quantiteControl.style.pointerEvents = 'auto';
+                        quantiteInput.disabled = false;
+                        quantiteBtns.forEach(btn => btn.disabled = false);
+                    } else {
+                        quantiteControl.style.opacity = '0.3';
+                        quantiteControl.style.pointerEvents = 'none';
+                        quantiteInput.disabled = true;
+                        quantiteBtns.forEach(btn => btn.disabled = true);
+                    }
+                    
+                    toggleSelection(id, plante.titre, plante.prix, plante.idPerso, e.target.checked);
+                });
+            });
+
+            document.querySelectorAll('.quantite-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.target.dataset.id;
+                    const action = e.target.dataset.action;
+                    const input = document.querySelector(`.quantite-input[data-id="${id}"]`);
+                    let valeur = parseInt(input.value) || 1;
+                    
+                    if (action === 'increase') {
+                        valeur++;
+                    } else if (action === 'decrease' && valeur > 1) {
+                        valeur--;
+                    }
+                    
+                    input.value = valeur;
+                    updateQuantite(id, valeur);
+                });
+            });
+
+            document.querySelectorAll('.quantite-input').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const id = e.target.dataset.id;
+                    const valeur = parseInt(e.target.value) || 1;
+                    e.target.value = Math.max(1, valeur);
+                    updateQuantite(id, e.target.value);
+                });
+            });
+        }
+
+        // ============================================
+        // ÉCOUTE DES CHANGEMENTS EN TEMPS RÉEL
+        // ============================================
+        
+        onValue(plantesRef, (snapshot) => {
+            const plantes = snapshot.val();
+            if (plantes) {
+                toutesLesPlantes = plantes;
+                const categorieActive = document.querySelector('.filtre-btn.active').dataset.categorie;
+                afficherPlantes(plantes, categorieActive);
+            } else {
+                document.getElementById('plantes-container').innerHTML = 
+                    '<div class="aucun-resultat">🌱 Aucune plante disponible pour le moment</div>';
+            }
+        });
+
+        // Gestion des filtres
+        document.querySelectorAll('.filtre-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                if (Object.keys(toutesLesPlantes).length > 0) {
+                    afficherPlantes(toutesLesPlantes, e.target.dataset.categorie);
+                }
+            });
+        });
+
+        // ============================================
+        // GESTION DE LA COMMANDE
+        // ============================================
+        
+        document.getElementById('commande-btn').addEventListener('click', () => {
+            afficherRecapitulatif();
+        });
+
+        function afficherRecapitulatif() {
+            const resumeDiv = document.getElementById('resume-commande');
+            let html = '';
+            let total = 0;
+            
+            for (let [id, item] of Object.entries(selection)) {
+                const sousTotal = (item.prix || 0) * item.quantite;
+                total += sousTotal;
+                
+                html += `
+                    <div class="resume-item">
+                        <span><strong>${item.idPerso}</strong> - ${item.titre} x${item.quantite}</span>
+                        <span>${sousTotal.toFixed(2)} DH</span>
+                    </div>
+                `;
+            }
+            
+            html += `<div class="total">Total: ${total.toFixed(2)} DH</div>`;
+            resumeDiv.innerHTML = html;
+            
+            document.getElementById('commandeModal').classList.add('active');
+        }
+
+        window.fermerModal = () => {
+            document.getElementById('commandeModal').classList.remove('active');
+        };
+
+        document.getElementById('whatsapp-commande-btn').addEventListener('click', () => {
+            let message = "🌿 *NOUVELLE COMMANDE ARBOKECH* 🌿\n\n";
+            let total = 0;
+            
+            for (let [id, item] of Object.entries(selection)) {
+                const sousTotal = (item.prix || 0) * item.quantite;
+                total += sousTotal;
+                
+                message += `🔸 *${item.idPerso}* - ${item.titre}\n`;
+                message += `   📦 Quantité: ${item.quantite}\n`;
+                if (item.prix) {
+                    message += `   💰 Prix unitaire: ${item.prix.toFixed(2)} DH\n`;
+                    message += `   💵 Sous-total: ${sousTotal.toFixed(2)} DH\n`;
+                }
+                message += `\n`;
+            }
+            
+            message += `💰 *TOTAL GÉNÉRAL: ${total.toFixed(2)} DH*\n\n`;
+            message += "Merci de confirmer la disponibilité et le délai de livraison.\n\n";
+            message += "Cordialement,\nUn client Arbokech";
+            
+            const messageEncode = encodeURIComponent(message);
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${messageEncode}`;
+            
+            window.open(url, '_blank');
+            fermerModal();
+        });
+
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('commandeModal');
+            if (e.target === modal) {
+                fermerModal();
+            }
+        });
+    </script>
+</body>
+</html>
