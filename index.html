@@ -12,207 +12,335 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f4f4;
+            color: #2d3748;
+            background-color: #f7fafc;
         }
 
-        header {
-            background: linear-gradient(135deg, #2c3e50, #27ae60);
+        /* Header avec image de fond et superposition */
+        .hero-header {
+            position: relative;
+            background: linear-gradient(135deg, #1a472a 0%, #2e7d5e 100%);
             color: white;
             text-align: center;
-            padding: 60px 20px;
+            padding: 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(26, 71, 42, 0.8) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            max-width: 220px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-title {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-slogan {
+            font-size: 1.8em;
+            font-weight: 300;
+            opacity: 0.95;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 60px 20px;
         }
 
         .intro {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .intro h2 {
-            font-size: 2.5em;
-            color: #2c3e50;
-            margin-bottom: 10px;
+            font-size: 2.8em;
+            color: #1a472a;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        /* Barre d'outils */
+        .intro p {
+            font-size: 1.2em;
+            color: #4a5568;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Barre d'outils améliorée */
         .toolbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             flex-wrap: wrap;
             gap: 20px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .selection-info {
-            background: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .selection-badge {
+            background: #e8f5e9;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 500;
         }
 
         .selection-count {
-            font-weight: bold;
-            color: #27ae60;
-            font-size: 1.2em;
+            font-weight: 700;
+            color: #2e7d5e;
+            font-size: 1.4em;
+            margin-left: 5px;
         }
 
         #commande-btn {
             background: #25D366;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 14px 35px;
             border-radius: 50px;
             font-size: 1.1em;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
         }
 
-        #commande-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        #commande-btn:hover:not(:disabled) {
+            background: #20b85f;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.35);
         }
 
         #commande-btn:disabled {
-            background: #ccc;
+            background: #cbd5e0;
             cursor: not-allowed;
-            transform: none;
             box-shadow: none;
+            opacity: 0.6;
         }
 
         .filtres {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .filtre-btn {
             padding: 12px 25px;
             border: none;
-            background: white;
-            border-radius: 30px;
+            background: #edf2f7;
+            border-radius: 40px;
             cursor: pointer;
             font-size: 1em;
             font-weight: 500;
             transition: all 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: #4a5568;
         }
 
         .filtre-btn:hover,
         .filtre-btn.active {
-            background: #27ae60;
+            background: #2e7d5e;
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+            box-shadow: 0 6px 15px rgba(46, 125, 94, 0.3);
         }
 
+        /* Grille de produits améliorée */
         .grille-plantes {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 30px;
             margin-top: 30px;
         }
 
         .carte-plante {
             background: white;
-            border-radius: 8px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .carte-plante:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(46, 125, 94, 0.15);
         }
 
         .carte-plante.selected {
-            border: 3px solid #27ae60;
-            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.3);
+            border: 3px solid #2e7d5e;
+            box-shadow: 0 15px 30px rgba(46, 125, 94, 0.25);
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
         }
 
         .carte-plante img {
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .carte-plante:hover img {
+            transform: scale(1.08);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .carte-plante:hover .image-overlay {
+            opacity: 1;
         }
 
         .carte-contenu {
-            padding: 20px;
+            padding: 25px;
         }
 
         .carte-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .carte-header h3 {
-            color: #2c3e50;
-            font-size: 1.3em;
+            color: #1a472a;
+            font-size: 1.4em;
+            font-weight: 600;
             margin: 0;
         }
 
         .plante-id-custom {
-            background: #48bb78;
-            padding: 4px 12px;
-            border-radius: 20px;
+            background: #2e7d5e;
+            padding: 5px 12px;
+            border-radius: 25px;
             font-size: 0.9em;
             color: white;
             font-family: monospace;
-            font-weight: bold;
-            display: inline-block;
-            white-space: nowrap;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .description {
-            color: #666;
-            margin-bottom: 10px;
+            color: #718096;
+            margin-bottom: 15px;
             font-size: 0.95em;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .prix {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #27ae60;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #2e7d5e;
             margin: 15px 0;
         }
 
         .categorie {
             display: inline-block;
-            padding: 4px 12px;
-            background: #ecf0f1;
-            border-radius: 20px;
+            padding: 5px 15px;
+            background: #edf2f7;
+            border-radius: 25px;
             font-size: 0.85em;
-            color: #7f8c8d;
+            color: #4a5568;
+            font-weight: 500;
             text-transform: capitalize;
         }
 
@@ -220,100 +348,71 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #ecf0f1;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
 
         .select-checkbox {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             cursor: pointer;
-            accent-color: #27ae60;
+            accent-color: #2e7d5e;
         }
 
         .quantite-control {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             margin-left: auto;
+            background: #f7fafc;
+            padding: 5px 10px;
+            border-radius: 40px;
         }
 
         .quantite-btn {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border: none;
-            background: #f0f0f0;
-            border-radius: 4px;
+            background: white;
+            border-radius: 50%;
             font-size: 1.2em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: #2e7d5e;
         }
 
         .quantite-btn:hover:not(:disabled) {
-            background: #27ae60;
+            background: #2e7d5e;
             color: white;
+            transform: scale(1.1);
         }
 
         .quantite-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
+            background: #e2e8f0;
         }
 
         .quantite-input {
             width: 50px;
             text-align: center;
-            padding: 5px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 6px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-weight: 500;
         }
 
-        .chargement, .aucun-resultat {
-            text-align: center;
-            padding: 60px;
-            font-size: 1.2em;
-            color: #7f8c8d;
-            grid-column: 1 / -1;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-            margin-top: 60px;
-        }
-
-        .contact-info {
-            margin-bottom: 25px;
-        }
-
-        .contact-info p {
-            margin: 8px 0;
-            font-size: 1.1em;
-        }
-
-        .admin-link {
-            margin-top: 25px;
-        }
-
-        .admin-link a {
-            color: #27ae60;
-            text-decoration: none;
-            font-size: 0.95em;
-            padding: 8px 20px;
-            border: 2px solid #27ae60;
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-
-        .admin-link a:hover {
-            background: #27ae60;
-            color: white;
-        }
-
-        /* Modal de commande */
+        /* Modal amélioré */
         .modal {
             display: none;
             position: fixed;
@@ -321,10 +420,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
             align-items: center;
             justify-content: center;
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .modal.active {
@@ -333,51 +433,66 @@
 
         .modal-content {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 35px;
+            border-radius: 25px;
             width: 90%;
             max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
+            animation: modalSlideUp 0.3s ease;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .modal-header h3 {
-            color: #2d3748;
-            font-size: 1.5em;
+            color: #1a472a;
+            font-size: 1.8em;
+            font-weight: 600;
         }
 
         .close-modal {
             background: none;
             border: none;
-            font-size: 1.8em;
+            font-size: 2.2em;
             cursor: pointer;
             color: #a0aec0;
+            line-height: 1;
+            transition: color 0.2s;
         }
 
         .close-modal:hover {
-            color: #718096;
+            color: #2e7d5e;
         }
 
         .resume-commande {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 15px;
             margin: 20px 0;
         }
 
         .resume-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            padding: 5px 0;
-            border-bottom: 1px dashed #ddd;
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .resume-item:last-child {
@@ -385,12 +500,12 @@
         }
 
         .total {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #27ae60;
-            border-top: 2px solid #ddd;
-            padding-top: 10px;
-            margin-top: 10px;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #2e7d5e;
+            border-top: 3px solid #2e7d5e;
+            padding-top: 15px;
+            margin-top: 15px;
             text-align: right;
         }
 
@@ -398,52 +513,129 @@
             background: #25D366;
             color: white;
             border: none;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
             cursor: pointer;
             width: 100%;
             margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            transition: all 0.3s;
         }
 
         .whatsapp-btn:hover {
-            background: #128C7E;
+            background: #20b85f;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer amélioré */
+        footer {
+            background: #1a472a;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to top, #1a472a, transparent);
+        }
+
+        .contact-info {
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            margin: 12px 0;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .admin-link a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 12px 30px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .admin-link a:hover {
+            background: white;
+            color: #1a472a;
+            border-color: white;
+        }
+
+        .chargement, .aucun-resultat {
+            text-align: center;
+            padding: 80px;
+            font-size: 1.3em;
+            color: #a0aec0;
+            grid-column: 1 / -1;
         }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2.2em; }
-            .intro h2 { font-size: 1.8em; }
+            .hero-title { font-size: 2.5em; }
+            .hero-slogan { font-size: 1.3em; }
+            .intro h2 { font-size: 2em; }
             .grille-plantes { grid-template-columns: 1fr; }
+            .toolbar { flex-direction: column; }
             .selection-info { width: 100%; }
-            .carte-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
+            #commande-btn { width: 100%; }
+            .filtres { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1 id="nom-pepiniere">Arbokech</h1>
-        <p id="slogan">Votre pépinière à Marrakech</p>
+    <header class="hero-header">
+        <!-- Image de fond (remplacée par une solution alternative) -->
+        <img src="https://ik.imagekit.io/fwmsbpxje/site%20pepiniere/backgrnd2.jpg" 
+             alt="Fond de pépinière" 
+             class="hero-background"
+             onerror="this.style.display='none'">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="logo-container">
+                <img src="https://ik.imagekit.io/fwmsbpxje/site%20pepiniere/logo1-Photoroom.png" 
+                     alt="Arbokech Logo" 
+                     class="logo"
+                     onerror="this.src='https://via.placeholder.com/220x100?text=Arbokech'">
+            </div>
+            <h1 class="hero-title" id="nom-pepiniere">Arbokech</h1>
+            <p class="hero-slogan" id="slogan">Votre pépinière à Marrakech</p>
+        </div>
     </header>
 
     <div class="container">
         <section class="intro">
-            <h2>Nos plantes</h2>
-            <p>Découvrez notre sélection d'arbres, fleurs et plantes d'intérieur</p>
+            <h2>🌿 Nos merveilles végétales</h2>
+            <p>Découvrez notre sélection d'arbres centenaires, de fleurs parfumées et de plantes d'intérieur soigneusement cultivées</p>
         </section>
 
-        <!-- Barre d'outils avec sélection -->
+        <!-- Barre d'outils -->
         <div class="toolbar">
             <div class="selection-info">
-                <span>🌱 Plantes sélectionnées : <span id="selection-count" class="selection-count">0</span></span>
+                <div class="selection-badge">
+                    <span>🌱 Sélectionnées :</span>
+                    <span class="selection-count" id="selection-count">0</span>
+                </div>
                 <button id="commande-btn" disabled>
                     <span>📋</span> Passer commande
                 </button>
@@ -462,7 +654,7 @@
         </div>
     </div>
 
-    <!-- Modal de récapitulatif de commande -->
+    <!-- Modal de commande -->
     <div id="commandeModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -491,15 +683,12 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK avec type="module" -->
+    <!-- Firebase SDK -->
     <script type="module">
-        // Import des fonctions Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
-        // ============================================
-        // CONFIGURATION FIREBASE
-        // ============================================
+        // Configuration Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAEHRqmwfVoA_bXfHrKf2-iVD5HLsQPRck",
             authDomain: "arbokech-7bef4.firebaseapp.com",
@@ -511,28 +700,21 @@
             measurementId: "G-EK2MT7ZVN5"
         };
 
-        // Initialiser Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // ============================================
-        // VARIABLES GLOBALES
-        // ============================================
+        // Variables globales
         let toutesLesPlantes = {};
-        let selection = {}; // { planteId: { quantite: 1, titre: "...", prix: 45, idPerso: "#0001" } }
+        let selection = {};
 
-        // Numéro WhatsApp (format international sans le +)
+        // Numéro WhatsApp
         const WHATSAPP_NUMBER = "212706765056";
 
-        // ============================================
-        // RÉFÉRENCES FIREBASE
-        // ============================================
+        // Références Firebase
         const plantesRef = ref(database, 'plantes');
         const configRef = ref(database, 'config');
 
-        // ============================================
-        // CHARGEMENT DE LA CONFIGURATION
-        // ============================================
+        // Charger la configuration
         onValue(configRef, (snapshot) => {
             const config = snapshot.val();
             if (config) {
@@ -544,10 +726,7 @@
             }
         });
 
-        // ============================================
-        // FONCTIONS DE SÉLECTION
-        // ============================================
-        
+        // Fonctions de sélection
         function mettreAJourCompteur() {
             const count = Object.keys(selection).length;
             document.getElementById('selection-count').textContent = count;
@@ -574,15 +753,11 @@
             }
         }
 
-        // ============================================
-        // AFFICHAGE DES PLANTES
-        // ============================================
-        
+        // Afficher les plantes
         function afficherPlantes(plantesData, categorieFiltre = 'tous') {
             const container = document.getElementById('plantes-container');
             container.innerHTML = '';
             
-            // Convertir l'objet en tableau
             const plantesArray = [];
             for (let id in plantesData) {
                 plantesArray.push({
@@ -591,13 +766,11 @@
                 });
             }
 
-            // Filtrer par catégorie
             let plantesFiltrees = plantesArray;
             if (categorieFiltre !== 'tous') {
                 plantesFiltrees = plantesArray.filter(p => p.categorie === categorieFiltre);
             }
 
-            // Ne montrer que les plantes disponibles
             plantesFiltrees = plantesFiltrees.filter(p => p.disponible !== false);
 
             if (plantesFiltrees.length === 0) {
@@ -605,7 +778,6 @@
                 return;
             }
 
-            // Trier par ID personnalisé
             plantesFiltrees.sort((a, b) => {
                 if (a.idPerso && b.idPerso) {
                     return a.idPerso.localeCompare(b.idPerso);
@@ -613,7 +785,6 @@
                 return 0;
             });
 
-            // Créer les cartes
             plantesFiltrees.forEach(plante => {
                 const carte = document.createElement('div');
                 carte.className = 'carte-plante';
@@ -621,15 +792,18 @@
                     carte.classList.add('selected');
                 }
                 
-                const imageUrl = plante.imageUrl || 'https://via.placeholder.com/300x200?text=Arbokech';
+                const imageUrl = plante.imageUrl || 'https://via.placeholder.com/400x300?text=Arbokech';
                 const prixTexte = plante.prix ? 
                     plante.prix.toFixed(2) + ' DH' : 
                     'Prix sur demande';
                 
                 carte.innerHTML = `
-                    <img src="${imageUrl}" 
-                         alt="${plante.titre || 'Plante Arbokech'}" 
-                         onerror="this.src='https://via.placeholder.com/300x200?text=Image+non+disponible'">
+                    <div class="image-container">
+                        <img src="${imageUrl}" 
+                             alt="${plante.titre || 'Plante Arbokech'}" 
+                             onerror="this.src='https://via.placeholder.com/400x300?text=Image+non+disponible'">
+                        <div class="image-overlay"></div>
+                    </div>
                     <div class="carte-contenu">
                         <div class="carte-header">
                             <h3>${plante.titre || 'Sans titre'}</h3>
@@ -641,11 +815,13 @@
                             <span class="categorie">${plante.categorie || 'Non catégorisé'}</span>
                         </div>
                         <div class="selection-controls">
-                            <input type="checkbox" class="select-checkbox" data-id="${plante.id}" 
-                                   ${selection[plante.id] ? 'checked' : ''}>
-                            <span>Sélectionner</span>
-                            <div class="quantite-control" ${!selection[plante.id] ? 'style="opacity:0.3; pointer-events:none"' : ''}>
-                                <button class="quantite-btn" data-id="${plante.id}" data-action="decrease">-</button>
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="select-checkbox" data-id="${plante.id}" 
+                                       ${selection[plante.id] ? 'checked' : ''}>
+                                <span>Sélectionner</span>
+                            </label>
+                            <div class="quantite-control" ${!selection[plante.id] ? 'style="opacity:0.5; pointer-events:none"' : ''}>
+                                <button class="quantite-btn" data-id="${plante.id}" data-action="decrease">−</button>
                                 <input type="number" class="quantite-input" data-id="${plante.id}" 
                                        value="${selection[plante.id]?.quantite || 1}" min="1" 
                                        ${!selection[plante.id] ? 'disabled' : ''}>
@@ -658,7 +834,7 @@
                 container.appendChild(carte);
             });
 
-            // Ajouter les événements
+            // Événements
             document.querySelectorAll('.select-checkbox').forEach(checkbox => {
                 checkbox.addEventListener('change', (e) => {
                     const id = e.target.dataset.id;
@@ -681,7 +857,7 @@
                         quantiteInput.disabled = false;
                         quantiteBtns.forEach(btn => btn.disabled = false);
                     } else {
-                        quantiteControl.style.opacity = '0.3';
+                        quantiteControl.style.opacity = '0.5';
                         quantiteControl.style.pointerEvents = 'none';
                         quantiteInput.disabled = true;
                         quantiteBtns.forEach(btn => btn.disabled = true);
@@ -719,10 +895,7 @@
             });
         }
 
-        // ============================================
-        // ÉCOUTE DES CHANGEMENTS EN TEMPS RÉEL
-        // ============================================
-        
+        // Écouter les changements
         onValue(plantesRef, (snapshot) => {
             const plantes = snapshot.val();
             if (plantes) {
@@ -735,7 +908,7 @@
             }
         });
 
-        // Gestion des filtres
+        // Filtres
         document.querySelectorAll('.filtre-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
@@ -747,10 +920,7 @@
             });
         });
 
-        // ============================================
-        // GESTION DE LA COMMANDE
-        // ============================================
-        
+        // Commande
         document.getElementById('commande-btn').addEventListener('click', () => {
             afficherRecapitulatif();
         });
@@ -794,25 +964,20 @@
                 message += `   📦 Quantité: ${item.quantite}\n`;
                 if (item.prix) {
                     message += `   💰 Prix unitaire: ${item.prix.toFixed(2)} DH\n`;
-                    message += `   💵 Sous-total: ${sousTotal.toFixed(2)} DH\n`;
                 }
-                message += `\n`;
+                message += `   💵 Sous-total: ${sousTotal.toFixed(2)} DH\n\n`;
             }
             
-            message += `💰 *TOTAL GÉNÉRAL: ${total.toFixed(2)} DH*\n\n`;
-            message += "Merci de confirmer la disponibilité et le délai de livraison.\n\n";
-            message += "Cordialement,\nUn client Arbokech";
+            message += `💰 *TOTAL: ${total.toFixed(2)} DH*\n\n`;
+            message += "Merci de confirmer la disponibilité.";
             
             const messageEncode = encodeURIComponent(message);
-            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${messageEncode}`;
-            
-            window.open(url, '_blank');
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${messageEncode}`, '_blank');
             fermerModal();
         });
 
         window.addEventListener('click', (e) => {
-            const modal = document.getElementById('commandeModal');
-            if (e.target === modal) {
+            if (e.target.classList.contains('modal')) {
                 fermerModal();
             }
         });
