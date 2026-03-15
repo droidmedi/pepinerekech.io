@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arbokech - Pépinière à Marrakech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-green: #1b4332;
+            --secondary-green: #2d6a4f;
+            --accent-green: #40916c;
+            --light-green: #74c69d;
+            --pale-green: #d8f3dc;
+            --cream: #f8f9f5;
+            --white: #ffffff;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 4px 20px rgba(27, 67, 50, 0.08);
+            --shadow-hover: 0 12px 40px rgba(27, 67, 50, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,683 +31,1035 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
             line-height: 1.6;
-            color: #2d3748;
-            background-color: #f7fafc;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Header avec image de fond et superposition */
-        .hero-header {
+        /* Header & Navigation */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .brand-logo {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .brand-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: -2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
             position: relative;
-            background: linear-gradient(135deg, #1a472a 0%, #2e7d5e 100%);
-            color: white;
-            text-align: center;
-            padding: 0;
-            min-height: 80vh;
+            height: 70vh;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
         }
 
-        .hero-background {
+        .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
+            inset: 0;
+            opacity: 0.4;
+            background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
             mix-blend-mode: overlay;
-            z-index: 1;
         }
 
-        .hero-overlay {
+        .hero-pattern {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(26, 71, 42, 0.8) 100%);
-            z-index: 2;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         .hero-content {
             position: relative;
             z-index: 3;
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            text-align: center;
+            color: var(--white);
+            padding: 2rem;
+            max-width: 800px;
         }
 
-        .logo-container {
-            margin-bottom: 30px;
-            animation: fadeInDown 1s ease;
-        }
-
-        .logo {
-            max-width: 220px;
-            height: auto;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-            transition: transform 0.3s;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.15);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .hero-title {
-            font-size: 4em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .hero-slogan {
-            font-size: 1.8em;
-            font-weight: 300;
-            opacity: 0.95;
-            text-shadow: 1px 2px 5px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .intro h2 {
-            font-size: 2.8em;
-            color: #1a472a;
-            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
         }
 
-        .intro p {
-            font-size: 1.2em;
-            color: #4a5568;
-            max-width: 700px;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary-green);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Barre d'outils améliorée */
-        .toolbar {
+        /* Control Panel */
+        .control-panel {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow);
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 20px;
-            background: white;
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            gap: 1.5rem;
+            position: sticky;
+            top: 90px;
+            z-index: 100;
+            border: 1px solid var(--light-gray);
         }
 
-        .selection-info {
+        .order-summary {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 1.5rem;
         }
 
-        .selection-badge {
-            background: #e8f5e9;
-            padding: 12px 25px;
+        .selection-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--pale-green);
+            padding: 0.75rem 1.5rem;
             border-radius: 50px;
             font-weight: 500;
+            color: var(--primary-green);
         }
 
         .selection-count {
-            font-weight: 700;
-            color: #2e7d5e;
-            font-size: 1.4em;
-            margin-left: 5px;
-        }
-
-        #commande-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 14px 35px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
+            background: var(--primary-green);
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
         }
 
-        #commande-btn:hover:not(:disabled) {
-            background: #20b85f;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.35);
+        .btn-primary {
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(27, 67, 50, 0.3);
         }
 
-        #commande-btn:disabled {
-            background: #cbd5e0;
+        .btn-primary:hover:not(:disabled) {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 67, 50, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: var(--light-gray);
+            color: var(--gray);
             cursor: not-allowed;
             box-shadow: none;
-            opacity: 0.6;
         }
 
-        .filtres {
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+        }
+
+        .btn-whatsapp:hover:not(:disabled) {
+            background: #128C7E;
+        }
+
+        /* Filters */
+        .filters {
             display: flex;
-            gap: 12px;
+            gap: 0.75rem;
             flex-wrap: wrap;
         }
 
-        .filtre-btn {
-            padding: 12px 25px;
-            border: none;
-            background: #edf2f7;
-            border-radius: 40px;
+        .filter-btn {
+            padding: 0.625rem 1.25rem;
+            border: 2px solid var(--light-gray);
+            background: transparent;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.875rem;
             font-weight: 500;
-            transition: all 0.3s;
-            color: #4a5568;
+            color: var(--gray);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .filtre-btn:hover,
-        .filtre-btn.active {
-            background: #2e7d5e;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(46, 125, 94, 0.3);
+        .filter-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            transform: translateY(-1px);
         }
 
-        /* Grille de produits améliorée */
-        .grille-plantes {
+        .filter-btn.active {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* Product Grid */
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
         }
 
-        .carte-plante {
-            background: white;
-            border-radius: 20px;
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
             position: relative;
-            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
         }
 
-        .carte-plante:hover {
+        .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 35px rgba(46, 125, 94, 0.15);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--pale-green);
         }
 
-        .carte-plante.selected {
-            border: 3px solid #2e7d5e;
-            box-shadow: 0 15px 30px rgba(46, 125, 94, 0.25);
+        .product-card.selected {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 4px rgba(64, 145, 108, 0.1);
         }
 
-        .image-container {
+        .product-image-wrapper {
             position: relative;
+            height: 280px;
             overflow: hidden;
-            height: 240px;
+            background: var(--cream);
         }
 
-        .carte-plante img {
+        .product-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s;
+            transition: transform 0.6s ease;
         }
 
-        .carte-plante:hover img {
-            transform: scale(1.08);
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
 
-        .image-overlay {
+        .product-badge {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: 1rem;
+            right: 1rem;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--primary-green);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 2;
         }
 
-        .carte-plante:hover .image-overlay {
-            opacity: 1;
+        .product-category-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(27, 67, 50, 0.9);
+            color: var(--white);
+            padding: 0.375rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(10px);
         }
 
-        .carte-contenu {
-            padding: 25px;
+        .product-content {
+            padding: 1.75rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .carte-header {
+        .product-header {
+            margin-bottom: 0.75rem;
+        }
+
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.375rem;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        .product-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--light-gray);
         }
 
-        .carte-header h3 {
-            color: #1a472a;
-            font-size: 1.4em;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .plante-id-custom {
-            background: #2e7d5e;
-            padding: 5px 12px;
-            border-radius: 25px;
-            font-size: 0.9em;
-            color: white;
-            font-family: monospace;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .description {
-            color: #718096;
-            margin-bottom: 15px;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        .prix {
-            font-size: 1.8em;
+        .product-price {
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #2e7d5e;
-            margin: 15px 0;
+            color: var(--primary-green);
+            font-family: 'Playfair Display', serif;
         }
 
-        .categorie {
-            display: inline-block;
-            padding: 5px 15px;
-            background: #edf2f7;
-            border-radius: 25px;
-            font-size: 0.85em;
-            color: #4a5568;
+        .product-price .currency {
+            font-size: 0.875rem;
             font-weight: 500;
-            text-transform: capitalize;
+            margin-left: 0.25rem;
+            color: var(--gray);
         }
 
-        .selection-controls {
+        .selection-area {
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px dashed var(--light-gray);
+        }
+
+        .selection-row {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px dashed #e2e8f0;
+            justify-content: space-between;
+            gap: 1rem;
         }
 
         .checkbox-wrapper {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.75rem;
             cursor: pointer;
-        }
-
-        .select-checkbox {
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-            accent-color: #2e7d5e;
-        }
-
-        .quantite-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-left: auto;
-            background: #f7fafc;
-            padding: 5px 10px;
-            border-radius: 40px;
-        }
-
-        .quantite-btn {
-            width: 32px;
-            height: 32px;
-            border: none;
-            background: white;
-            border-radius: 50%;
-            font-size: 1.2em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            color: #2e7d5e;
-        }
-
-        .quantite-btn:hover:not(:disabled) {
-            background: #2e7d5e;
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .quantite-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            background: #e2e8f0;
-        }
-
-        .quantite-input {
-            width: 50px;
-            text-align: center;
-            padding: 6px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            user-select: none;
             font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
         }
 
-        /* Modal amélioré */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
+        .checkbox-wrapper:hover {
+            color: var(--primary-green);
         }
 
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 35px;
-            border-radius: 25px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalSlideUp 0.3s ease;
-        }
-
-        @keyframes modalSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .modal-header h3 {
-            color: #1a472a;
-            font-size: 1.8em;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 2.2em;
-            cursor: pointer;
-            color: #a0aec0;
-            line-height: 1;
-            transition: color 0.2s;
-        }
-
-        .close-modal:hover {
-            color: #2e7d5e;
-        }
-
-        .resume-commande {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-
-        .resume-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .resume-item:last-child {
-            border-bottom: none;
-        }
-
-        .total {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #2e7d5e;
-            border-top: 3px solid #2e7d5e;
-            padding-top: 15px;
-            margin-top: 15px;
-            text-align: right;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 15px;
-            font-size: 1.2em;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--light-gray);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            transition: all 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            background: #20b85f;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-        }
-
-        /* Footer amélioré */
-        footer {
-            background: #1a472a;
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-            margin-top: 80px;
+            transition: var(--transition);
             position: relative;
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: linear-gradient(to top, #1a472a, transparent);
+        .custom-checkbox.checked {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
         }
 
-        .contact-info {
-            margin-bottom: 30px;
+        .custom-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        .contact-info p {
-            margin: 12px 0;
-            font-size: 1.2em;
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--cream);
+            padding: 0.375rem;
+            border-radius: 12px;
+            opacity: 0.4;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .quantity-control.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--white);
+            border-radius: 8px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            font-weight: 600;
+            color: var(--primary-green);
+            transition: var(--transition);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .admin-link a {
-            color: white;
-            text-decoration: none;
-            font-size: 1em;
-            padding: 12px 30px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 40px;
-            transition: all 0.3s;
-            display: inline-block;
+        .qty-btn:hover:not(:disabled) {
+            background: var(--primary-green);
+            color: var(--white);
         }
 
-        .admin-link a:hover {
-            background: white;
-            color: #1a472a;
-            border-color: white;
+        .qty-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
 
-        .chargement, .aucun-resultat {
+        .qty-input {
+            width: 40px;
             text-align: center;
-            padding: 80px;
-            font-size: 1.3em;
-            color: #a0aec0;
-            grid-column: 1 / -1;
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            -moz-appearance: textfield;
         }
 
+        .qty-input::-webkit-outer-spin-button,
+        .qty-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(27, 67, 50, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--cream);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--light-gray);
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 12px;
+            border: 1px solid var(--light-gray);
+        }
+
+        .order-item-info h4 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .order-item-info span {
+            font-size: 0.875rem;
+            color: var(--gray);
+            font-family: 'Courier New', monospace;
+        }
+
+        .order-item-price {
+            font-weight: 700;
+            color: var(--primary-green);
+            font-size: 1.125rem;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--primary-green);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .order-total-label {
+            font-size: 1.25rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .order-total-amount {
+            font-size: 2rem;
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+            padding: 1.125rem;
+            font-size: 1.125rem;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+            margin-top: 6rem;
+            position: relative;
+        }
+
+        .main-footer::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, var(--primary-green), transparent);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-section a {
+            color: var(--light-green);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .admin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .admin-btn:hover {
+            background: var(--white);
+            color: var(--primary-green);
+            border-color: var(--white);
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.875rem;
+        }
+
+        /* Loading & Empty States */
+        .state-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 6rem 2rem;
+            color: var(--gray);
+        }
+
+        .state-message-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .state-message h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5em; }
-            .hero-slogan { font-size: 1.3em; }
-            .intro h2 { font-size: 2em; }
-            .grille-plantes { grid-template-columns: 1fr; }
-            .toolbar { flex-direction: column; }
-            .selection-info { width: 100%; }
-            #commande-btn { width: 100%; }
-            .filtres { justify-content: center; }
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .brand-text h1 {
+                font-size: 1.25rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .control-panel {
+                position: relative;
+                top: 0;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1.25rem;
+            }
+
+            .order-summary {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .filters {
+                justify-content: center;
+                width: 100%;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 0.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-green);
         }
     </style>
 </head>
 <body>
-    <header class="hero-header">
-        <!-- Image de fond (remplacée par une solution alternative) -->
-        <img src="https://ik.imagekit.io/fwmsbpxje/site%20pepiniere/backgrnd2.jpg" 
-             alt="Fond de pépinière" 
-             class="hero-background"
-             onerror="this.style.display='none'">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <div class="logo-container">
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="brand">
                 <img src="https://ik.imagekit.io/fwmsbpxje/site%20pepiniere/logo1-Photoroom.png" 
-                     alt="Arbokech Logo" 
-                     class="logo"
-                     onerror="this.src='https://via.placeholder.com/220x100?text=Arbokech'">
+                     alt="Arbokech" 
+                     class="brand-logo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0'">
+                <div class="brand-text">
+                    <h1 id="nom-pepiniere">Arbokech</h1>
+                    <p id="slogan">Pépinière à Marrakech</p>
+                </div>
             </div>
-            <h1 class="hero-title" id="nom-pepiniere">Arbokech</h1>
-            <p class="hero-slogan" id="slogan">Votre pépinière à Marrakech</p>
         </div>
     </header>
 
-    <div class="container">
-        <section class="intro">
-            <h2>🌿 Nos merveilles végétales</h2>
-            <p>Découvrez notre sélection d'arbres centenaires, de fleurs parfumées et de plantes d'intérieur soigneusement cultivées</p>
-        </section>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>🌿</span>
+                <span>Depuis 2010</span>
+            </div>
+            <h1 class="hero-title">Votre oasis verte à Marrakech</h1>
+            <p class="hero-subtitle" id="hero-slogan">
+                Découvrez notre sélection d'arbres centenaires, de fleurs parfumées et de plantes d'intérieur soigneusement cultivées
+            </p>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
 
-        <!-- Barre d'outils -->
-        <div class="toolbar">
-            <div class="selection-info">
-                <div class="selection-badge">
-                    <span>🌱 Sélectionnées :</span>
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-label">Notre Collection</span>
+            <h2 class="section-title">Plantes & Arbres Sélectionnés</h2>
+            <p class="section-desc">
+                Chaque plante est cultivée avec soin et passion. Sélectionnez vos favoris et passez commande directement via WhatsApp.
+            </p>
+        </div>
+
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <div class="order-summary">
+                <div class="selection-pill">
+                    <span>Sélectionnées</span>
                     <span class="selection-count" id="selection-count">0</span>
                 </div>
-                <button id="commande-btn" disabled>
-                    <span>📋</span> Passer la commande sur WhatsApp
+                <button id="commande-btn" class="btn-primary btn-whatsapp" disabled>
+                    <span>📋</span>
+                    <span>Passer la commande</span>
                 </button>
             </div>
             
-            <div class="filtres" id="filtres-container">
-                <button class="filtre-btn active" data-categorie="tous">🌿 Tous</button>
-                <button class="filtre-btn" data-categorie="arbre">🌳 Arbres</button>
-                <button class="filtre-btn" data-categorie="fleur">🌸 Fleurs</button>
-                <button class="filtre-btn" data-categorie="plante">🌱 Plantes d'intérieur</button>
+            <div class="filters" id="filtres-container">
+                <button class="filter-btn active" data-categorie="tous">
+                    <span>🌿</span> Tous
+                </button>
+                <button class="filter-btn" data-categorie="arbre">
+                    <span>🌳</span> Arbres
+                </button>
+                <button class="filter-btn" data-categorie="fleur">
+                    <span>🌸</span> Fleurs
+                </button>
+                <button class="filter-btn" data-categorie="plante">
+                    <span>🌱</span> Intérieur
+                </button>
             </div>
         </div>
 
-        <div id="plantes-container" class="grille-plantes">
-            <div class="chargement">Chargement de nos merveilles végétales...</div>
+        <!-- Products Grid -->
+        <div id="plantes-container" class="products-grid">
+            <div class="state-message">
+                <div class="state-message-icon">🌱</div>
+                <h3>Chargement en cours...</h3>
+                <p>Récolte de nos merveilles végétales</p>
+            </div>
         </div>
-    </div>
 
-    <!-- Modal de commande -->
-    <div id="commandeModal" class="modal">
-        <div class="modal-content">
+    </main>
+
+    <!-- Order Modal -->
+    <div id="commandeModal" class="modal-overlay">
+        <div class="modal">
             <div class="modal-header">
-                <h3>📋 Récapitulatif de votre commande</h3>
-                <button class="close-modal" onclick="fermerModal()">&times;</button>
+                <h3 class="modal-title">Votre Sélection</h3>
+                <button class="modal-close" onclick="fermerModal()">&times;</button>
             </div>
-            
-            <div id="resume-commande" class="resume-commande">
-                <!-- Rempli par JavaScript -->
+            <div class="modal-body">
+                <div id="resume-commande" class="order-list">
+                    <!-- Filled by JS -->
+                </div>
+                <div class="order-total">
+                    <span class="order-total-label">Total estimé</span>
+                    <span class="order-total-amount" id="modal-total">0 DH</span>
+                </div>
             </div>
-            
-            <button id="whatsapp-commande-btn" class="whatsapp-btn">
-                <span>📱</span> Envoyer la commande sur WhatsApp
-            </button>
+            <div class="modal-footer">
+                <button id="whatsapp-commande-btn" class="btn-primary btn-whatsapp btn-full">
+                    <span>📱</span>
+                    <span>Envoyer sur WhatsApp</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <div class="contact-info" id="contact-info">
-            <p id="contact-tel">📞 Téléphone: </p>
-            <p id="contact-email">✉️ Email: </p>
-            <p id="contact-adresse">📍 Adresse: </p>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p id="contact-tel">📞 Téléphone: Chargement...</p>
+                <p id="contact-email">✉️ Email: Chargement...</p>
+                <p id="contact-adresse">📍 Adresse: Chargement...</p>
+            </div>
+            <div class="footer-section">
+                <h3>Arbokech</h3>
+                <p>
+                    Votre pépinière de confiance à Marrakech. 
+                    Nous cultivons et sélectionnons les meilleures plantes 
+                    pour votre jardin et votre intérieur.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Administration</h3>
+                <p>Gérez votre catalogue de plantes</p>
+                <a href="https://droidmedi.github.io/adminarbokech.io/" target="_blank" rel="noopener" class="admin-btn">
+                    <span>⚡</span> Espace Admin
+                </a>
+            </div>
         </div>
-        <div class="admin-link">
-    <a href="https://droidmedi.github.io/adminarbokech.io/ " target="_blank" rel="noopener">⚡ Espace administration</a>
-</div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Arbokech - Tous droits réservés</p>
+        </div>
     </footer>
 
-    <!-- Firebase SDK -->
+    <!-- Firebase & App Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
         import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
 
-        // Configuration Firebase
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyAEHRqmwfVoA_bXfHrKf2-iVD5HLsQPRck",
             authDomain: "arbokech-7bef4.firebaseapp.com",
@@ -703,31 +1074,26 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Variables globales
+        // Global Variables
         let toutesLesPlantes = {};
         let selection = {};
-
-        // Numéro WhatsApp
         const WHATSAPP_NUMBER = "212706765056";
 
-        // Références Firebase
-        const plantesRef = ref(database, 'plantes');
-        const configRef = ref(database, 'config');
-
-        // Charger la configuration
-        onValue(configRef, (snapshot) => {
+        // Load Config
+        onValue(ref(database, 'config'), (snapshot) => {
             const config = snapshot.val();
             if (config) {
                 document.getElementById('nom-pepiniere').textContent = config.nomPepiniere || 'Arbokech';
-                document.getElementById('slogan').textContent = config.slogan || 'Votre pépinière à Marrakech';
-                document.getElementById('contact-tel').innerHTML = `📞 Téléphone: ${config.telephone || 'Non renseigné'}`;
-                document.getElementById('contact-email').innerHTML = `✉️ Email: ${config.email || 'Non renseigné'}`;
-                document.getElementById('contact-adresse').innerHTML = `📍 Adresse: ${config.adresse || 'Non renseignée'}`;
+                document.getElementById('slogan').textContent = config.slogan || 'Pépinière à Marrakech';
+                document.getElementById('hero-slogan').textContent = config.slogan || 'Votre oasis verte à Marrakech';
+                document.getElementById('contact-tel').innerHTML = `📞 ${config.telephone || 'Non renseigné'}`;
+                document.getElementById('contact-email').innerHTML = `✉️ ${config.email || 'Non renseigné'}`;
+                document.getElementById('contact-adresse').innerHTML = `📍 ${config.adresse || 'Non renseignée'}`;
             }
         });
 
-        // Fonctions de sélection
-        function mettreAJourCompteur() {
+        // Selection Logic
+        function updateCounter() {
             const count = Object.keys(selection).length;
             document.getElementById('selection-count').textContent = count;
             document.getElementById('commande-btn').disabled = count === 0;
@@ -744,186 +1110,150 @@
             } else {
                 delete selection[planteId];
             }
-            mettreAJourCompteur();
+            updateCounter();
         }
 
-        function updateQuantite(planteId, nouvelleQuantite) {
+        function updateQuantity(planteId, nouvelleQuantite) {
             if (selection[planteId]) {
                 selection[planteId].quantite = Math.max(1, nouvelleQuantite);
             }
         }
 
-        // Afficher les plantes
+        // Render Products
         function afficherPlantes(plantesData, categorieFiltre = 'tous') {
             const container = document.getElementById('plantes-container');
             container.innerHTML = '';
             
-            const plantesArray = [];
-            for (let id in plantesData) {
-                plantesArray.push({
-                    id: id,
-                    ...plantesData[id]
-                });
-            }
-
-            let plantesFiltrees = plantesArray;
+            const plantesArray = Object.entries(plantesData || {}).map(([id, data]) => ({ id, ...data }));
+            
+            let plantesFiltrees = plantesArray.filter(p => p.disponible !== false);
+            
             if (categorieFiltre !== 'tous') {
-                plantesFiltrees = plantesArray.filter(p => p.categorie === categorieFiltre);
+                plantesFiltrees = plantesFiltrees.filter(p => p.categorie === categorieFiltre);
             }
-
-            plantesFiltrees = plantesFiltrees.filter(p => p.disponible !== false);
 
             if (plantesFiltrees.length === 0) {
-                container.innerHTML = '<div class="aucun-resultat">🌱 Aucune plante dans cette catégorie pour le moment</div>';
+                container.innerHTML = `
+                    <div class="state-message">
+                        <div class="state-message-icon">🌾</div>
+                        <h3>Aucune plante trouvée</h3>
+                        <p>Essayez une autre catégorie ou revenez plus tard</p>
+                    </div>
+                `;
                 return;
             }
 
+            // Sort by custom ID
             plantesFiltrees.sort((a, b) => {
-                if (a.idPerso && b.idPerso) {
-                    return a.idPerso.localeCompare(b.idPerso);
-                }
+                if (a.idPerso && b.idPerso) return a.idPerso.localeCompare(b.idPerso);
                 return 0;
             });
 
-            plantesFiltrees.forEach(plante => {
-                const carte = document.createElement('div');
-                carte.className = 'carte-plante';
-                if (selection[plante.id]) {
-                    carte.classList.add('selected');
-                }
+            plantesFiltrees.forEach((plante, index) => {
+                const isSelected = !!selection[plante.id];
+                const card = document.createElement('div');
+                card.className = `product-card ${isSelected ? 'selected' : ''} animate-in`;
+                card.style.animationDelay = `${index * 0.05}s`;
                 
                 const imageUrl = plante.imageUrl || 'https://via.placeholder.com/400x300?text=Arbokech';
-                const prixTexte = plante.prix ? 
-                    plante.prix.toFixed(2) + ' DH' : 
-                    'Prix sur demande';
+                const prixTexte = plante.prix ? `${plante.prix.toFixed(2)} <span class="currency">DH</span>` : 'Sur demande';
                 
-                carte.innerHTML = `
-                    <div class="image-container">
+                const categoryLabels = {
+                    'arbre': 'Arbre',
+                    'fleur': 'Fleur',
+                    'plante': 'Plante d\'intérieur'
+                };
+
+                card.innerHTML = `
+                    <div class="product-image-wrapper">
+                        <span class="product-category-tag">${categoryLabels[plante.categorie] || 'Plante'}</span>
+                        <span class="product-badge">${plante.idPerso || '#'}</span>
                         <img src="${imageUrl}" 
-                             alt="${plante.titre || 'Plante Arbokech'}" 
+                             alt="${plante.titre || 'Plante'}" 
+                             class="product-image"
                              onerror="this.src='https://via.placeholder.com/400x300?text=Image+non+disponible'">
-                        <div class="image-overlay"></div>
                     </div>
-                    <div class="carte-contenu">
-                        <div class="carte-header">
-                            <h3>${plante.titre || 'Sans titre'}</h3>
-                            <span class="plante-id-custom">${plante.idPerso || '#'}</span>
+                    <div class="product-content">
+                        <div class="product-header">
+                            <h3 class="product-title">${plante.titre || 'Sans titre'}</h3>
                         </div>
-                        <p class="description">${plante.description || 'Aucune description disponible'}</p>
-                        <p class="prix">${prixTexte}</p>
-                        <div>
-                            <span class="categorie">${plante.categorie || 'Non catégorisé'}</span>
+                        <p class="product-description">${plante.description || 'Aucune description disponible'}</p>
+                        <div class="product-footer">
+                            <div class="product-price">${prixTexte}</div>
                         </div>
-                        <div class="selection-controls">
-                            <label class="checkbox-wrapper">
-                                <input type="checkbox" class="select-checkbox" data-id="${plante.id}" 
-                                       ${selection[plante.id] ? 'checked' : ''}>
-                                <span>Sélectionner</span>
-                            </label>
-                            <div class="quantite-control" ${!selection[plante.id] ? 'style="opacity:0.5; pointer-events:none"' : ''}>
-                                <button class="quantite-btn" data-id="${plante.id}" data-action="decrease">−</button>
-                                <input type="number" class="quantite-input" data-id="${plante.id}" 
-                                       value="${selection[plante.id]?.quantite || 1}" min="1" 
-                                       ${!selection[plante.id] ? 'disabled' : ''}>
-                                <button class="quantite-btn" data-id="${plante.id}" data-action="increase">+</button>
+                        <div class="selection-area">
+                            <div class="selection-row">
+                                <label class="checkbox-wrapper" onclick="toggleCardSelection('${plante.id}', this)">
+                                    <div class="custom-checkbox ${isSelected ? 'checked' : ''}"></div>
+                                    <span>Sélectionner</span>
+                                    <input type="checkbox" class="select-checkbox" data-id="${plante.id}" 
+                                           ${isSelected ? 'checked' : ''} style="display: none;">
+                                </label>
+                                <div class="quantity-control ${isSelected ? 'active' : ''}">
+                                    <button class="qty-btn" data-id="${plante.id}" data-action="decrease" onclick="changeQty('${plante.id}', -1)">−</button>
+                                    <input type="number" class="qty-input" data-id="${plante.id}" 
+                                           value="${selection[plante.id]?.quantite || 1}" min="1" 
+                                           onchange="updateQtyInput('${plante.id}', this.value)">
+                                    <button class="qty-btn" data-id="${plante.id}" data-action="increase" onclick="changeQty('${plante.id}', 1)">+</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `;
 
-                container.appendChild(carte);
-            });
-
-            // Événements
-            document.querySelectorAll('.select-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    const id = e.target.dataset.id;
-                    const plante = plantesFiltrees.find(p => p.id === id);
-                    const carte = e.target.closest('.carte-plante');
-                    
-                    if (e.target.checked) {
-                        carte.classList.add('selected');
-                    } else {
-                        carte.classList.remove('selected');
-                    }
-                    
-                    const quantiteControl = carte.querySelector('.quantite-control');
-                    const quantiteInput = carte.querySelector('.quantite-input');
-                    const quantiteBtns = carte.querySelectorAll('.quantite-btn');
-                    
-                    if (e.target.checked) {
-                        quantiteControl.style.opacity = '1';
-                        quantiteControl.style.pointerEvents = 'auto';
-                        quantiteInput.disabled = false;
-                        quantiteBtns.forEach(btn => btn.disabled = false);
-                    } else {
-                        quantiteControl.style.opacity = '0.5';
-                        quantiteControl.style.pointerEvents = 'none';
-                        quantiteInput.disabled = true;
-                        quantiteBtns.forEach(btn => btn.disabled = true);
-                    }
-                    
-                    toggleSelection(id, plante.titre, plante.prix, plante.idPerso, e.target.checked);
-                });
-            });
-
-            document.querySelectorAll('.quantite-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const id = e.target.dataset.id;
-                    const action = e.target.dataset.action;
-                    const input = document.querySelector(`.quantite-input[data-id="${id}"]`);
-                    let valeur = parseInt(input.value) || 1;
-                    
-                    if (action === 'increase') {
-                        valeur++;
-                    } else if (action === 'decrease' && valeur > 1) {
-                        valeur--;
-                    }
-                    
-                    input.value = valeur;
-                    updateQuantite(id, valeur);
-                });
-            });
-
-            document.querySelectorAll('.quantite-input').forEach(input => {
-                input.addEventListener('change', (e) => {
-                    const id = e.target.dataset.id;
-                    const valeur = parseInt(e.target.value) || 1;
-                    e.target.value = Math.max(1, valeur);
-                    updateQuantite(id, e.target.value);
-                });
+                container.appendChild(card);
             });
         }
 
-        // Écouter les changements
-        onValue(plantesRef, (snapshot) => {
-            const plantes = snapshot.val();
-            if (plantes) {
-                toutesLesPlantes = plantes;
-                const categorieActive = document.querySelector('.filtre-btn.active').dataset.categorie;
-                afficherPlantes(plantes, categorieActive);
+        // Event Handlers
+        window.toggleCardSelection = function(id, wrapper) {
+            const checkbox = wrapper.querySelector('.select-checkbox');
+            checkbox.checked = !checkbox.checked;
+            
+            const card = wrapper.closest('.product-card');
+            const qtyControl = card.querySelector('.quantity-control');
+            const customCheckbox = wrapper.querySelector('.custom-checkbox');
+            
+            if (checkbox.checked) {
+                card.classList.add('selected');
+                qtyControl.classList.add('active');
+                customCheckbox.classList.add('checked');
             } else {
-                document.getElementById('plantes-container').innerHTML = 
-                    '<div class="aucun-resultat">🌱 Aucune plante disponible pour le moment</div>';
+                card.classList.remove('selected');
+                qtyControl.classList.remove('active');
+                customCheckbox.classList.remove('checked');
             }
-        });
+            
+            const plante = toutesLesPlantes[id];
+            toggleSelection(id, plante.titre, plante.prix, plante.idPerso, checkbox.checked);
+        };
 
-        // Filtres
-        document.querySelectorAll('.filtre-btn').forEach(btn => {
+        window.changeQty = function(id, delta) {
+            const input = document.querySelector(`.qty-input[data-id="${id}"]`);
+            let val = parseInt(input.value) + delta;
+            val = Math.max(1, val);
+            input.value = val;
+            updateQuantity(id, val);
+        };
+
+        window.updateQtyInput = function(id, val) {
+            val = parseInt(val) || 1;
+            val = Math.max(1, val);
+            document.querySelector(`.qty-input[data-id="${id}"]`).value = val;
+            updateQuantity(id, val);
+        };
+
+        // Filter Events
+        document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filtre-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                
-                if (Object.keys(toutesLesPlantes).length > 0) {
-                    afficherPlantes(toutesLesPlantes, e.target.dataset.categorie);
-                }
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.currentTarget.classList.add('active');
+                afficherPlantes(toutesLesPlantes, e.currentTarget.dataset.categorie);
             });
         });
 
-        // Commande
-        document.getElementById('commande-btn').addEventListener('click', () => {
-            afficherRecapitulatif();
-        });
+        // Order Logic
+        document.getElementById('commande-btn').addEventListener('click', afficherRecapitulatif);
 
         function afficherRecapitulatif() {
             const resumeDiv = document.getElementById('resume-commande');
@@ -935,20 +1265,22 @@
                 total += sousTotal;
                 
                 html += `
-                    <div class="resume-item">
-                        <span><strong>${item.idPerso}</strong> - ${item.titre} x${item.quantite}</span>
-                        <span>${sousTotal.toFixed(2)} DH</span>
+                    <div class="order-item">
+                        <div class="order-item-info">
+                            <h4>${item.titre}</h4>
+                            <span>Ref: ${item.idPerso} × ${item.quantite}</span>
+                        </div>
+                        <div class="order-item-price">${sousTotal.toFixed(2)} DH</div>
                     </div>
                 `;
             }
             
-            html += `<div class="total">Total: ${total.toFixed(2)} DH</div>`;
-            resumeDiv.innerHTML = html;
-            
+            resumeDiv.innerHTML = html || '<p style="text-align: center; color: var(--gray);">Aucune sélection</p>';
+            document.getElementById('modal-total').textContent = total.toFixed(2) + ' DH';
             document.getElementById('commandeModal').classList.add('active');
         }
 
-        window.fermerModal = () => {
+        window.fermerModal = function() {
             document.getElementById('commandeModal').classList.remove('active');
         };
 
@@ -976,10 +1308,17 @@
             fermerModal();
         });
 
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('modal')) {
-                fermerModal();
-            }
+        // Close modal on outside click
+        document.getElementById('commandeModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) fermerModal();
+        });
+
+        // Load Data
+        onValue(ref(database, 'plantes'), (snapshot) => {
+            const plantes = snapshot.val();
+            toutesLesPlantes = plantes || {};
+            const categorieActive = document.querySelector('.filter-btn.active').dataset.categorie;
+            afficherPlantes(toutesLesPlantes, categorieActive);
         });
     </script>
 </body>
