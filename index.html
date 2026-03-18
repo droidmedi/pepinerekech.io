@@ -602,6 +602,27 @@
             margin-top: 0.25rem;
         }
 
+        /* Nouveau style pour la note de stock */
+        .stock-note {
+            font-size: 0.75rem;
+            color: var(--gray);
+            background: rgba(116, 198, 157, 0.1);
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-left: 3px solid var(--accent-green);
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .stock-note-icon {
+            color: var(--accent-green);
+            font-size: 0.8rem;
+        }
+
         .product-footer {
             display: flex;
             justify-content: space-between;
@@ -1513,6 +1534,7 @@
                 let prixDisplay = '';
                 let prixAffiche = '';
                 let variableSection = '';
+                let stockNoteSection = '';
                 let quantiteInitiale = isSelected ? selection[plante.id].quantite : 1;
                 
                 if (plante.prix) {
@@ -1571,6 +1593,14 @@
                             
                         </div>
                     `;
+                    
+                    // Ajouter la note de stock pour les plantes à taille variable
+                    stockNoteSection = `
+                        <div class="stock-note">
+                            <span class="stock-note-icon">🌱</span>
+                            <span>En fonction du stock, nous sélectionnons la plante la plus proche de votre choix.</span>
+                        </div>
+                    `;
                 } else if (plante.ageVariable) {
                     // Prix variable selon l'âge
                     const ageInitial = plante.ageMin;
@@ -1619,6 +1649,14 @@
                             
                         </div>
                     `;
+                    
+                    // Ajouter la note de stock pour les plantes à âge variable
+                    stockNoteSection = `
+                        <div class="stock-note">
+                            <span class="stock-note-icon">🌱</span>
+                            <span>En fonction du stock, nous sélectionnons la plante la plus proche de votre choix.</span>
+                        </div>
+                    `;
                 } else {
                     prixDisplay = '<div class="product-price-main">Sur demande</div>';
                 }
@@ -1664,6 +1702,7 @@
                         </div>
                         
                         ${variableSection}
+                        ${stockNoteSection}
                         
                         <div class="selection-area">
                             <div class="selection-row">
