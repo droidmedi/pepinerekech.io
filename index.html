@@ -3,27 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arbokech - Pépinière à Marrakech</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Admin - Arbokech Pépinière</title>
     <style>
-        :root {
-            --primary-green: #1b4332;
-            --secondary-green: #2d6a4f;
-            --accent-green: #40916c;
-            --light-green: #74c69d;
-            --pale-green: #d8f3dc;
-            --cream: #f8f9f5;
-            --white: #ffffff;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --shadow: 0 4px 20px rgba(27, 67, 50, 0.08);
-            --shadow-hover: 0 12px 40px rgba(27, 67, 50, 0.15);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -31,1120 +12,1100 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--cream);
-            color: var(--dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
         }
 
-        /* Header & Navigation */
-        .main-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(27, 67, 50, 0.1);
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .brand-logo {
-            height: 50px;
-            width: auto;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-
-        .brand-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            font-weight: 600;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-text p {
-            font-size: 0.75rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: -2px;
-        }
-
-        /* Navigation Links */
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-link {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-green);
-        }
-
-        .btn-service {
-            background: var(--primary-green);
-            color: var(--white) !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(27, 67, 50, 0.2);
-        }
-
-        .btn-service:hover {
-            background: var(--secondary-green);
-            transform: translateY(-2px);
-            color: var(--white) !important;
-            box-shadow: 0 8px 25px rgba(27, 67, 50, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            position: relative;
-            height: 70vh;
-            min-height: 500px;
+        /* Styles de connexion */
+        .login-container {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            opacity: 0.4;
-            background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            mix-blend-mode: overlay;
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
         }
 
-        .hero-pattern {
-            position: absolute;
-            inset: 0;
-            opacity: 0.1;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        .login-box h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            color: var(--white);
-            padding: 2rem;
-            max-width: 800px;
+        .login-box p {
+            color: #666;
+            margin-bottom: 30px;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255,255,255,0.15);
-            padding: 0.5rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
             font-weight: 500;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
             font-weight: 600;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            opacity: 0.7;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent-green);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--primary-green);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .section-desc {
-            color: var(--gray);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Control Panel */
-        .control-panel {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-            position: sticky;
-            top: 90px;
-            z-index: 100;
-            border: 1px solid var(--light-gray);
-        }
-
-        .order-summary {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .selection-pill {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--pale-green);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 500;
-            color: var(--primary-green);
-        }
-
-        .selection-count {
-            background: var(--primary-green);
-            color: var(--white);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .btn-primary {
-            background: var(--primary-green);
-            color: var(--white);
-            border: none;
-            padding: 0.875rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(27, 67, 50, 0.3);
-        }
-
-        .btn-primary:hover:not(:disabled) {
-            background: var(--secondary-green);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(27, 67, 50, 0.4);
-        }
-
-        .btn-primary:disabled {
-            background: var(--light-gray);
-            color: var(--gray);
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-        }
-
-        .btn-whatsapp:hover:not(:disabled) {
-            background: #128C7E;
-        }
-
-        /* Filters */
-        .filters {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.625rem 1.25rem;
-            border: 2px solid var(--light-gray);
-            background: transparent;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--gray);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filter-btn:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-            transform: translateY(-1px);
-        }
-
-        .filter-btn.active {
-            background: var(--primary-green);
-            border-color: var(--primary-green);
-            color: var(--white);
-        }
-
-        /* Product Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 2px solid transparent;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-color: var(--pale-green);
-        }
-
-        .product-card.selected {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 4px rgba(64, 145, 108, 0.1);
-        }
-
-        .product-image-wrapper {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-            background: var(--cream);
-        }
-
-        .product-image {
+            background: #667eea;
+            color: white;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.05);
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .product-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-family: 'Courier New', monospace;
-            font-weight: 600;
-            font-size: 0.875rem;
-            color: var(--primary-green);
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #38a169;
+        }
+
+        .btn-warning {
+            background: #ecc94b;
+            color: #744210;
+        }
+
+        .btn-warning:hover {
+            background: #d69e2e;
+        }
+
+        .btn-danger {
+            background: #f56565;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #e53e3e;
+        }
+
+        .btn-info {
+            background: #4299e1;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #3182ce;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        /* Interface admin */
+        .admin-container {
+            display: none;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 20px 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 2;
-        }
-
-        .product-category-tag {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(27, 67, 50, 0.9);
-            color: var(--white);
-            padding: 0.375rem 1rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            backdrop-filter: blur(10px);
-        }
-
-        .product-content {
-            padding: 1.75rem;
-            flex: 1;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .product-header {
-            margin-bottom: 0.75rem;
+        .admin-header h1 {
+            color: #2d3748;
+            font-size: 1.8em;
         }
 
-        .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.375rem;
-            color: var(--dark);
+        .admin-header h1 span {
+            color: #48bb78;
+            font-size: 0.6em;
+            margin-left: 10px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .admin-content {
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 30px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            border: none;
+            background: #edf2f7;
+            border-radius: 8px;
+            font-size: 1em;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .product-description {
-            color: var(--gray);
-            font-size: 0.9375rem;
-            line-height: 1.6;
-            margin-bottom: 0.75rem;
-            flex: 1;
+        .tab-btn:hover {
+            background: #e2e8f0;
         }
 
-        .description-content {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            transition: all 0.3s ease;
+        .tab-btn.active {
+            background: #48bb78;
+            color: white;
         }
 
-        .description-content.expanded {
-            -webkit-line-clamp: unset;
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
             display: block;
         }
 
-        .voir-plus-btn {
-            background: none;
-            border: none;
-            color: var(--accent-green);
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            padding: 0.25rem 0;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            transition: var(--transition);
-            margin-bottom: 0.75rem;
-        }
-
-        .voir-plus-btn:hover {
-            color: var(--primary-green);
-            text-decoration: underline;
-        }
-
-        .product-footer {
+        /* Gestionnaire d'IDs */
+        .id-manager {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--light-gray);
         }
 
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .product-price .currency {
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-left: 0.25rem;
-            color: var(--gray);
-        }
-
-        .selection-area {
-            margin-top: 1.25rem;
-            padding-top: 1.25rem;
-            border-top: 1px dashed var(--light-gray);
-        }
-
-        .selection-row {
+        .id-stats {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            gap: 30px;
         }
 
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            user-select: none;
-            font-weight: 500;
-            color: var(--dark);
-            transition: var(--transition);
-        }
-
-        .checkbox-wrapper:hover {
-            color: var(--primary-green);
-        }
-
-        .custom-checkbox {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--light-gray);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .custom-checkbox.checked {
-            background: var(--accent-green);
-            border-color: var(--accent-green);
-        }
-
-        .custom-checkbox.checked::after {
-            content: '✓';
-            color: white;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--cream);
-            padding: 0.375rem;
-            border-radius: 12px;
-            opacity: 0.4;
-            pointer-events: none;
-            transition: var(--transition);
-        }
-
-        .quantity-control.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .qty-btn {
-            width: 32px;
-            height: 32px;
-            border: none;
-            background: var(--white);
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: var(--primary-green);
-            transition: var(--transition);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .qty-btn:hover:not(:disabled) {
-            background: var(--primary-green);
-            color: var(--white);
-        }
-
-        .qty-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .qty-input {
-            width: 40px;
+        .id-stat-item {
             text-align: center;
+        }
+
+        .id-stat-label {
+            font-size: 0.9em;
+            color: #718096;
+        }
+
+        .id-stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .id-stat-value.success {
+            color: #48bb78;
+        }
+
+        .id-stat-value.warning {
+            color: #ecc94b;
+        }
+
+        .id-stat-value.danger {
+            color: #f56565;
+        }
+
+        /* Barre de recherche */
+        .search-bar {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #48bb78;
+            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
+        }
+
+        .search-btn {
+            background: #48bb78;
+            color: white;
             border: none;
-            background: transparent;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1em;
             font-weight: 600;
-            font-size: 1rem;
-            color: var(--dark);
-            -moz-appearance: textfield;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .qty-input::-webkit-outer-spin-button,
-        .qty-input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .search-btn:hover {
+            background: #38a169;
         }
 
-        /* Modal */
-        .modal-overlay {
+        .search-clear {
+            background: #ecc94b;
+            color: #744210;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .search-clear:hover {
+            background: #d69e2e;
+        }
+
+        .search-stats {
+            margin: 10px 0;
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        /* Formulaire d'ajout */
+        .form-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .form-card h3 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 0;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #48bb78;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .small-text {
+            font-size: 0.85em;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .id-preview {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .id-preview-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .id-preview-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #48bb78;
+            font-family: monospace;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #48bb78;
+        }
+
+        /* NOUVEAU : Style pour les options de taille variable */
+        .option-card {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .option-header h4 {
+            color: #2d3748;
+            font-size: 1.1em;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #48bb78;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .variable-options {
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .variable-options.active {
+            display: grid;
+        }
+
+        .variable-input-group {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .variable-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        .variable-input-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+        }
+
+        .price-range-preview {
+            background: #ebf8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #4299e1;
+        }
+
+        .price-range-preview p {
+            margin: 5px 0;
+            color: #2c5282;
+        }
+
+        /* Tableau des plantes */
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f7fafc;
+            color: #4a5568;
+            font-weight: 600;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .table-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .plante-id-custom {
+            background: #48bb78;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: white;
+            font-family: monospace;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .plante-id-firebase {
+            font-size: 0.7em;
+            color: #a0aec0;
+            font-family: monospace;
+            margin-top: 4px;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .badge-danger {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .badge-info {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-btn.edit {
+            background: #ecc94b;
+            color: #744210;
+        }
+
+        .action-btn.delete {
+            background: #f56565;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Modal de modification */
+        .modal {
             display: none;
             position: fixed;
-            inset: 0;
-            background: rgba(27, 67, 50, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            z-index: 1000;
         }
 
-        .modal-overlay.active {
+        .modal.active {
             display: flex;
-            opacity: 1;
         }
 
-        .modal {
-            background: var(--white);
-            border-radius: 24px;
-            width: 100%;
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
             max-width: 600px;
             max-height: 90vh;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-overlay.active .modal {
-            transform: scale(1);
+            overflow-y: auto;
         }
 
         .modal-header {
-            padding: 2rem 2rem 1.5rem;
-            border-bottom: 1px solid var(--light-gray);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
         }
 
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.75rem;
-            color: var(--primary-green);
-            font-weight: 600;
+        .modal-header h3 {
+            color: #2d3748;
+            font-size: 1.5em;
         }
 
-        .modal-close {
-            width: 40px;
-            height: 40px;
+        .close-modal {
+            background: none;
             border: none;
-            background: var(--cream);
-            border-radius: 50%;
+            font-size: 1.8em;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--gray);
-            transition: var(--transition);
+            color: #a0aec0;
         }
 
-        .modal-close:hover {
-            background: var(--light-gray);
-            color: var(--dark);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            padding: 2rem;
-            overflow-y: auto;
-            flex: 1;
-        }
-
-        .order-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: var(--cream);
-            border-radius: 12px;
-            border: 1px solid var(--light-gray);
-        }
-
-        .order-item-info h4 {
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 0.25rem;
-        }
-
-        .order-item-info span {
-            font-size: 0.875rem;
-            color: var(--gray);
-            font-family: 'Courier New', monospace;
-        }
-
-        .order-item-price {
-            font-weight: 700;
-            color: var(--primary-green);
-            font-size: 1.125rem;
-        }
-
-        .order-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.5rem;
-            border-top: 2px solid var(--primary-green);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .order-total-label {
-            font-size: 1.25rem;
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        .order-total-amount {
-            font-size: 2rem;
-            color: var(--primary-green);
-            font-weight: 700;
-        }
-
-        .modal-footer {
-            padding: 1.5rem 2rem 2rem;
-            border-top: 1px solid var(--light-gray);
-        }
-
-        .btn-full {
-            width: 100%;
-            justify-content: center;
-            padding: 1.125rem;
-            font-size: 1.125rem;
-        }
-
-        /* Footer */
-        .main-footer {
-            background: var(--primary-green);
-            color: var(--white);
-            padding: 4rem 2rem 2rem;
-            margin-top: 6rem;
-            position: relative;
-        }
-
-        .main-footer::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: linear-gradient(to top, var(--primary-green), transparent);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .footer-section p {
-            opacity: 0.9;
-            line-height: 1.8;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .footer-section a {
-            color: var(--light-green);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-section a:hover {
-            color: var(--white);
-            text-decoration: underline;
-        }
-
-        .admin-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .admin-btn:hover {
-            background: var(--white);
-            color: var(--primary-green);
-            border-color: var(--white);
-            text-decoration: none;
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.875rem;
-        }
-
-        /* Loading & Empty States */
-        .state-message {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 6rem 2rem;
-            color: var(--gray);
-        }
-
-        .state-message-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .state-message h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 1rem;
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .brand-text h1 {
-                font-size: 1.25rem;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .btn-service {
-                padding: 0.6rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            .hero {
-                margin-top: 120px;
-                height: 60vh;
-                min-height: 400px;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .control-panel {
-                position: relative;
-                top: 0;
-                flex-direction: column;
-                align-items: stretch;
-                padding: 1.25rem;
-            }
-
-            .order-summary {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .btn-primary {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .filters {
-                justify-content: center;
-                width: 100%;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                padding-bottom: 0.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .animate-in {
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--cream);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-green);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-green);
+        .close-modal:hover {
+            color: #718096;
         }
     </style>
 </head>
 <body>
-
-    <!-- Header -->
-    <header class="main-header">
-        <div class="nav-container">
-            <div class="brand">
-                <img src="https://ik.imagekit.io/fwmsbpxje/site%20pepiniere/logo1-Photoroom.png" 
-                     alt="Arbokech" 
-                     class="brand-logo"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.marginLeft='0'">
-                <div class="brand-text">
-                    <h1 id="nom-pepiniere">Arbokech</h1>
-                    <p id="slogan">Pépinière à Marrakech</p>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="services.html" class="nav-link btn-service">🔨 Services Jardinage</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-pattern"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span>🌿</span>
-                <span>Depuis 2010</span>
-            </div>
-            <h1 class="hero-title">Votre oasis verte à Marrakech</h1>
-            <p class="hero-subtitle" id="hero-slogan">
-                Découvrez notre sélection d'arbres centenaires, de fleurs parfumées et de plantes d'intérieur soigneusement cultivées
-            </p>
-        </div>
-        <div class="scroll-indicator">↓</div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container">
-        
-        <!-- Section Header -->
-        <div class="section-header" id="plantes">
-            <span class="section-label">Notre Collection</span>
-            <h2 class="section-title">Plantes & Arbres Sélectionnés</h2>
-            <p class="section-desc">
-                Chaque plante est cultivée avec soin et passion. Sélectionnez vos favoris et passez commande directement via WhatsApp.
-            </p>
-        </div>
-
-        <!-- Control Panel -->
-        <div class="control-panel">
-            <div class="order-summary">
-                <div class="selection-pill">
-                    <span>Sélectionnées</span>
-                    <span class="selection-count" id="selection-count">0</span>
-                </div>
-                <button id="commande-btn" class="btn-primary btn-whatsapp" disabled>
-                    <span>📋</span>
-                    <span>Passer la commande</span>
-                </button>
+    <!-- Page de connexion -->
+    <div id="loginContainer" class="login-container">
+        <div class="login-box">
+            <h2>🌱 Arbokech</h2>
+            <p>Espace administration</p>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="admin@arbokech.ma">
             </div>
             
-            <div class="filters" id="filtres-container">
-                <button class="filter-btn active" data-categorie="tous">
-                    <span>🌿</span> Tous
-                </button>
-                <button class="filter-btn" data-categorie="arbre">
-                    <span>🌳</span> Arbres
-                </button>
-                <button class="filter-btn" data-categorie="fleur">
-                    <span>🌸</span> Fleurs
-                </button>
-                <button class="filter-btn" data-categorie="plante">
-                    <span>🌱</span> Intérieur
-                </button>
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <input type="password" id="loginPassword" placeholder="••••••••">
+            </div>
+            
+            <button id="loginBtn" class="btn btn-primary">Se connecter</button>
+            <div id="loginError" class="error-message">Email ou mot de passe incorrect</div>
+        </div>
+    </div>
+
+    <!-- Interface admin -->
+    <div id="adminContainer" class="admin-container">
+        <div class="admin-header">
+            <h1>Arbokech <span>Administration</span></h1>
+            <div class="header-buttons">
+                <a href="https://droidmedi.github.io/pepinerekech.io/" target="_blank" class="btn btn-info">
+                    🌐 Voir le site
+                </a>
+                <button id="logoutBtn" class="btn btn-warning">Déconnexion</button>
             </div>
         </div>
 
-        <!-- Products Grid -->
-        <div id="plantes-container" class="products-grid">
-            <div class="state-message">
-                <div class="state-message-icon">🌱</div>
-                <h3>Chargement en cours...</h3>
-                <p>Récolte de nos merveilles végétales</p>
+        <div class="admin-content">
+            <!-- Onglets -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="plantes">🌱 Gestion des plantes</button>
+                <button class="tab-btn" data-tab="ids">🔢 Gestion des IDs</button>
+                <button class="tab-btn" data-tab="config">⚙️ Configuration</button>
             </div>
-        </div>
 
-    </main>
+            <!-- Contenu de l'onglet Plantes -->
+            <div id="tabPlantes" class="tab-content active">
+                <!-- Formulaire d'ajout -->
+                <div class="form-card">
+                    <h3>➕ Ajouter une nouvelle plante</h3>
+                    
+                    <!-- Aperçu de l'ID qui sera attribué -->
+                    <div class="id-preview">
+                        <span class="id-preview-label">ID qui sera attribué :</span>
+                        <span id="nextIdPreview" class="id-preview-value">#0001</span>
+                    </div>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Titre *</label>
+                            <input type="text" id="newTitre" placeholder="Ex: Olivier centenaire">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Prix fixe (DH)</label>
+                            <input type="number" id="newPrix" step="0.01" placeholder="299.99">
+                            <div class="small-text">Laissez vide si prix variable</div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Description</label>
+                            <textarea id="newDescription" placeholder="Description de la plante..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>URL de l'image *</label>
+                            <input type="url" id="newImageUrl" placeholder="https://...">
+                            <div class="small-text">Utilisez ImgBB ou Cloudinary pour héberger vos images</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Catégorie</label>
+                            <select id="newCategorie">
+                                <option value="arbre">🌳 Arbre</option>
+                                <option value="fleur">🌸 Fleur</option>
+                                <option value="plante">🌱 Plante d'intérieur</option>
+                                <option value="autre">🪴 Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="newDisponible" checked>
+                            <label for="newDisponible">Disponible à la vente</label>
+                        </div>
+                    </div>
 
-    <!-- Order Modal -->
-    <div id="commandeModal" class="modal-overlay">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 class="modal-title">Votre Sélection</h3>
-                <button class="modal-close" onclick="fermerModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="resume-commande" class="order-list">
-                    <!-- Filled by JS -->
+                    <!-- NOUVEAU : Option taille variable -->
+                    <div class="option-card">
+                        <div class="option-header">
+                            <h4>📏 Taille variable</h4>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="tailleVariable">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div id="tailleOptions" class="variable-options">
+                            <div class="variable-input-group">
+                                <label>Taille minimum (cm)</label>
+                                <input type="number" id="tailleMin" min="0" step="1" placeholder="50">
+                            </div>
+                            <div class="variable-input-group">
+                                <label>Taille maximum (cm)</label>
+                                <input type="number" id="tailleMax" min="0" step="1" placeholder="200">
+                            </div>
+                            <div class="variable-input-group">
+                                <label>Prix pour taille minimum (DH)</label>
+                                <input type="number" id="prixMin" min="0" step="0.01" placeholder="150">
+                            </div>
+                            <div class="variable-input-group">
+                                <label>Prix pour taille maximum (DH)</label>
+                                <input type="number" id="prixMax" min="0" step="0.01" placeholder="500">
+                            </div>
+                        </div>
+
+                        <!-- Aperçu des prix -->
+                        <div id="taillePreview" class="price-range-preview" style="display: none;">
+                            <p>📊 Aperçu de la gamme de prix :</p>
+                            <p>• <span id="previewMinTaille">0</span> cm → <span id="previewMinPrix">0</span> DH</p>
+                            <p>• <span id="previewMaxTaille">0</span> cm → <span id="previewMaxPrix">0</span> DH</p>
+                        </div>
+                    </div>
+
+                    <!-- NOUVEAU : Option âge variable -->
+                    <div class="option-card">
+                        <div class="option-header">
+                            <h4>📅 Âge variable</h4>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="ageVariable">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div id="ageOptions" class="variable-options">
+                            <div class="variable-input-group">
+                                <label>Âge minimum (ans)</label>
+                                <input type="number" id="ageMin" min="0" step="0.5" placeholder="1">
+                            </div>
+                            <div class="variable-input-group">
+                                <label>Âge maximum (ans)</label>
+                                <input type="number" id="ageMax" min="0" step="0.5" placeholder="10">
+                            </div>
+                            <div class="variable-input-group">
+                                <label>Prix pour âge minimum (DH)</label>
+                                <input type="number" id="prixAgeMin" min="0" step="0.01" placeholder="100">
+                            </div>
+                            <div class="variable-input-group">
+                                <label>Prix pour âge maximum (DH)</label>
+                                <input type="number" id="prixAgeMax" min="0" step="0.01" placeholder="800">
+                            </div>
+                        </div>
+
+                        <!-- Aperçu des prix -->
+                        <div id="agePreview" class="price-range-preview" style="display: none;">
+                            <p>📊 Aperçu de la gamme de prix :</p>
+                            <p>• <span id="previewMinAge">0</span> ans → <span id="previewMinAgePrix">0</span> DH</p>
+                            <p>• <span id="previewMaxAge">0</span> ans → <span id="previewMaxAgePrix">0</span> DH</p>
+                        </div>
+                    </div>
+                    
+                    <button id="ajouterPlanteBtn" class="btn btn-success" style="margin-top: 20px;">
+                        ➕ Ajouter cette plante avec l'ID <span id="btnIdDisplay">#0001</span>
+                    </button>
                 </div>
-                <div class="order-total">
-                    <span class="order-total-label">Total estimé</span>
-                    <span class="order-total-amount" id="modal-total">0 DH</span>
+
+                <!-- Barre de recherche -->
+                <div class="search-bar">
+                    <input type="text" id="searchInput" class="search-input" 
+                           placeholder="🔍 Rechercher par ID (#0001) ou par nom de plante...">
+                    <button id="searchBtn" class="search-btn">
+                        <span>🔍</span> Rechercher
+                    </button>
+                    <button id="clearSearchBtn" class="search-clear">
+                        <span>🗑️</span> Effacer
+                    </button>
+                </div>
+                <div id="searchStats" class="search-stats"></div>
+
+                <!-- Liste des plantes -->
+                <div class="form-card">
+                    <h3>📋 Plantes existantes</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>ID</th>
+                                    <th>Titre</th>
+                                    <th>Description</th>
+                                    <th>Prix</th>
+                                    <th>Variable</th>
+                                    <th>Catégorie</th>
+                                    <th>Disponibilité</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="plantesTableBody">
+                                <tr>
+                                    <td colspan="9" style="text-align: center;">Chargement...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button id="whatsapp-commande-btn" class="btn-primary btn-whatsapp btn-full">
-                    <span>📱</span>
-                    <span>Envoyer sur WhatsApp</span>
-                </button>
+
+            <!-- Contenu de l'onglet Gestion des IDs -->
+            <div id="tabIds" class="tab-content">
+                <div class="form-card">
+                    <h3>🔢 Gestionnaire d'IDs personnalisés</h3>
+                    
+                    <div class="id-manager">
+                        <div class="id-stats">
+                            <div class="id-stat-item">
+                                <div class="id-stat-label">IDs utilisés</div>
+                                <div id="statsUtilises" class="id-stat-value success">0</div>
+                            </div>
+                            <div class="id-stat-item">
+                                <div class="id-stat-label">IDs disponibles</div>
+                                <div id="statsDisponibles" class="id-stat-value">9000</div>
+                            </div>
+                            <div class="id-stat-item">
+                                <div class="id-stat-label">Prochain ID</div>
+                                <div id="statsProchain" class="id-stat-value warning">#0001</div>
+                            </div>
+                        </div>
+                        <button id="refreshIdsBtn" class="btn btn-info">🔄 Actualiser</button>
+                    </div>
+
+                    <h4>IDs disponibles (réutilisables)</h4>
+                    <div id="idsDisponiblesList" style="background: #f7fafc; padding: 15px; border-radius: 8px; max-height: 200px; overflow-y: auto;">
+                        Chargement...
+                    </div>
+                    
+                    <div class="small-text" style="margin-top: 10px;">
+                        💡 Les IDs des plantes supprimées sont automatiquement remis dans la liste des IDs disponibles.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu de l'onglet Configuration -->
+            <div id="tabConfig" class="tab-content">
+                <div class="form-card">
+                    <h3>⚙️ Configuration de la pépinière</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Nom de la pépinière</label>
+                            <input type="text" id="configNom" placeholder="Arbokech">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Slogan</label>
+                            <input type="text" id="configSlogan" placeholder="Votre pépinière à Marrakech">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <input type="text" id="configTel" placeholder="+212 6 XX XX XX XX">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="configEmail" placeholder="contact@arbokech.ma">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Adresse</label>
+                            <input type="text" id="configAdresse" placeholder="Marrakech, Maroc">
+                        </div>
+                    </div>
+                    
+                    <button id="saveConfigBtn" class="btn btn-success" style="margin-top: 20px;">
+                        💾 Enregistrer la configuration
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Contact</h3>
-                <p id="contact-tel">📞 Téléphone: Chargement...</p>
-                <p id="contact-email">✉️ Email: Chargement...</p>
-                <p id="contact-adresse">📍 Adresse: Chargement...</p>
+    <!-- Modal de modification -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Modifier la plante</h3>
+                <button class="close-modal" onclick="fermerModal()">&times;</button>
             </div>
-            <div class="footer-section">
-                <h3>Arbokech</h3>
-                <p>
-                    Votre pépinière de confiance à Marrakech. 
-                    Nous cultivons et sélectionnons les meilleures plantes 
-                    pour votre jardin et votre intérieur.
-                </p>
+            
+            <div class="form-group">
+                <label>Titre</label>
+                <input type="text" id="editTitre">
             </div>
-            <div class="footer-section">
-                <h3>Administration</h3>
-                <p>Gérez votre catalogue de plantes</p>
-                <a href="https://droidmedi.github.io/adminarbokech.io/" target="_blank" rel="noopener" class="admin-btn">
-                    <span>⚡</span> Espace Admin
-                </a>
+            
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="editDescription" rows="3"></textarea>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Arbokech - Tous droits réservés</p>
-        </div>
-    </footer>
+            
+            <div class="form-group">
+                <label>Prix fixe (DH)</label>
+                <input type="number" id="editPrix" step="0.01">
+            </div>
+            
+            <div class="form-group">
+                <label>URL de l'image</label>
+                <input type="url" id="editImageUrl">
+            </div>
+            
+            <div class="form-group">
+                <label>Catégorie</label>
+                <select id="editCategorie">
+                    <option value="arbre">🌳 Arbre</option>
+                    <option value="fleur">🌸 Fleur</option>
+                    <option value="plante">🌱 Plante d'intérieur</option>
+                    <option value="autre">🪴 Autre</option>
+                </select>
+            </div>
 
-    <!-- Firebase & App Logic -->
+            <!-- NOUVEAU : Options variables dans le modal de modification -->
+            <div class="option-card">
+                <div class="option-header">
+                    <h4>📏 Taille variable</h4>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="editTailleVariable">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div id="editTailleOptions" class="variable-options">
+                    <div class="variable-input-group">
+                        <label>Taille minimum (cm)</label>
+                        <input type="number" id="editTailleMin" min="0" step="1">
+                    </div>
+                    <div class="variable-input-group">
+                        <label>Taille maximum (cm)</label>
+                        <input type="number" id="editTailleMax" min="0" step="1">
+                    </div>
+                    <div class="variable-input-group">
+                        <label>Prix min (DH)</label>
+                        <input type="number" id="editPrixMin" min="0" step="0.01">
+                    </div>
+                    <div class="variable-input-group">
+                        <label>Prix max (DH)</label>
+                        <input type="number" id="editPrixMax" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card">
+                <div class="option-header">
+                    <h4>📅 Âge variable</h4>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="editAgeVariable">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <div id="editAgeOptions" class="variable-options">
+                    <div class="variable-input-group">
+                        <label>Âge minimum (ans)</label>
+                        <input type="number" id="editAgeMin" min="0" step="0.5">
+                    </div>
+                    <div class="variable-input-group">
+                        <label>Âge maximum (ans)</label>
+                        <input type="number" id="editAgeMax" min="0" step="0.5">
+                    </div>
+                    <div class="variable-input-group">
+                        <label>Prix min (DH)</label>
+                        <input type="number" id="editAgePrixMin" min="0" step="0.01">
+                    </div>
+                    <div class="variable-input-group">
+                        <label>Prix max (DH)</label>
+                        <input type="number" id="editAgePrixMax" min="0" step="0.01">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkbox-group">
+                <input type="checkbox" id="editDisponible">
+                <label for="editDisponible">Disponible à la vente</label>
+            </div>
+            
+            <button id="saveEditBtn" class="btn btn-success" style="margin-top: 20px; width: 100%;">
+                💾 Enregistrer les modifications
+            </button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK avec type="module" -->
     <script type="module">
+        // Import des fonctions Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+        import { getDatabase, ref, onValue, push, remove, update, set, get } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-        // Firebase Config
+        // Configuration Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyAEHRqmwfVoA_bXfHrKf2-iVD5HLsQPRck",
             authDomain: "arbokech-7bef4.firebaseapp.com",
@@ -1156,282 +1117,686 @@
             measurementId: "G-EK2MT7ZVN5"
         };
 
+        // Initialiser Firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
+        const auth = getAuth(app);
 
-        // Global Variables
-        let toutesLesPlantes = {};
-        let selection = {};
-        const WHATSAPP_NUMBER = "212706765056";
+        // ============================================
+        // VARIABLES GLOBALES
+        // ============================================
+        let planteEnCoursDeModification = null;
+        let toutesLesPlantes = [];
+        let idsUtilises = new Set();
+        let idsDisponibles = new Set();
 
-        // Load Config
-        onValue(ref(database, 'config'), (snapshot) => {
-            const config = snapshot.val();
-            if (config) {
-                document.getElementById('nom-pepiniere').textContent = config.nomPepiniere || 'Arbokech';
-                document.getElementById('slogan').textContent = config.slogan || 'Pépinière à Marrakech';
-                document.getElementById('hero-slogan').textContent = config.slogan || 'Votre oasis verte à Marrakech';
-                document.getElementById('contact-tel').innerHTML = `📞 ${config.telephone || 'Non renseigné'}`;
-                document.getElementById('contact-email').innerHTML = `✉️ ${config.email || 'Non renseigné'}`;
-                document.getElementById('contact-adresse').innerHTML = `📍 ${config.adresse || 'Non renseignée'}`;
+        // ============================================
+        // GESTION DES IDs PERSONNALISÉS
+        // ============================================
+        
+        // Initialiser tous les IDs possibles (de 1 à 9000)
+        function initialiserIdsPossibles() {
+            for (let i = 1; i <= 9000; i++) {
+                idsDisponibles.add(i);
+            }
+        }
+
+        // Mettre à jour les ensembles d'IDs à partir des plantes existantes
+        function mettreAJourIds(plantes) {
+            idsUtilises.clear();
+            initialiserIdsPossibles();
+            
+            plantes.forEach(plante => {
+                if (plante.idPerso) {
+                    // Extraire le nombre de l'ID (enlever le #)
+                    const num = parseInt(plante.idPerso.substring(1));
+                    if (!isNaN(num) && num >= 1 && num <= 9000) {
+                        idsUtilises.add(num);
+                        idsDisponibles.delete(num);
+                    }
+                }
+            });
+            
+            mettreAJourAffichageIds();
+        }
+
+        // Obtenir le prochain ID disponible
+        function getProchainId() {
+            const idsArray = Array.from(idsDisponibles);
+            if (idsArray.length === 0) return null;
+            idsArray.sort((a, b) => a - b);
+            return idsArray[0];
+        }
+
+        // Formater un nombre en ID (#0001)
+        function formaterId(num) {
+            return `#${num.toString().padStart(4, '0')}`;
+        }
+
+        // Mettre à jour l'affichage des IDs
+        function mettreAJourAffichageIds() {
+            const prochain = getProchainId();
+            const prochainFormate = prochain ? formaterId(prochain) : '# Aucun';
+            
+            document.getElementById('statsUtilises').textContent = idsUtilises.size;
+            document.getElementById('statsDisponibles').textContent = idsDisponibles.size;
+            document.getElementById('statsProchain').textContent = prochainFormate;
+            
+            // Mettre à jour l'aperçu dans le formulaire
+            document.getElementById('nextIdPreview').textContent = prochainFormate;
+            document.getElementById('btnIdDisplay').textContent = prochainFormate;
+            
+            // Afficher la liste des IDs disponibles
+            const idsList = Array.from(idsDisponibles).slice(0, 50).sort((a, b) => a - b);
+            const idsListHtml = idsList.map(num => 
+                `<span style="display: inline-block; background: #48bb78; color: white; padding: 5px 10px; border-radius: 20px; margin: 3px; font-family: monospace;">${formaterId(num)}</span>`
+            ).join('');
+            
+            document.getElementById('idsDisponiblesList').innerHTML = 
+                idsList.length > 0 ? idsListHtml : 'Aucun ID disponible (limite de 9000 atteinte)';
+        }
+
+        // ============================================
+        // GESTION DES OPTIONS VARIABLES
+        // ============================================
+
+        // Gestionnaire pour l'option taille variable
+        document.getElementById('tailleVariable').addEventListener('change', function(e) {
+            const options = document.getElementById('tailleOptions');
+            const preview = document.getElementById('taillePreview');
+            
+            if (e.target.checked) {
+                options.classList.add('active');
+                document.getElementById('newPrix').disabled = true;
+                document.getElementById('newPrix').value = '';
+                document.getElementById('newPrix').placeholder = 'Désactivé (prix variable)';
+            } else {
+                options.classList.remove('active');
+                preview.style.display = 'none';
+                document.getElementById('newPrix').disabled = false;
+                document.getElementById('newPrix').placeholder = '299.99';
             }
         });
 
-        // Selection Logic
-        function updateCounter() {
-            const count = Object.keys(selection).length;
-            document.getElementById('selection-count').textContent = count;
-            document.getElementById('commande-btn').disabled = count === 0;
-        }
-
-        function toggleSelection(planteId, titre, prix, idPerso, estSelectionne) {
-            if (estSelectionne) {
-                selection[planteId] = {
-                    quantite: 1,
-                    titre: titre,
-                    prix: prix || 0,
-                    idPerso: idPerso
-                };
+        // Gestionnaire pour l'option âge variable
+        document.getElementById('ageVariable').addEventListener('change', function(e) {
+            const options = document.getElementById('ageOptions');
+            const preview = document.getElementById('agePreview');
+            
+            if (e.target.checked) {
+                options.classList.add('active');
+                document.getElementById('newPrix').disabled = true;
+                document.getElementById('newPrix').value = '';
+                document.getElementById('newPrix').placeholder = 'Désactivé (prix variable)';
             } else {
-                delete selection[planteId];
+                options.classList.remove('active');
+                preview.style.display = 'none';
+                document.getElementById('newPrix').disabled = false;
+                document.getElementById('newPrix').placeholder = '299.99';
             }
-            updateCounter();
+        });
+
+        // Mise à jour de l'aperçu pour la taille
+        function updateTaillePreview() {
+            const min = document.getElementById('tailleMin').value;
+            const max = document.getElementById('tailleMax').value;
+            const prixMin = document.getElementById('prixMin').value;
+            const prixMax = document.getElementById('prixMax').value;
+            const preview = document.getElementById('taillePreview');
+            
+            if (min && max && prixMin && prixMax) {
+                document.getElementById('previewMinTaille').textContent = min;
+                document.getElementById('previewMaxTaille').textContent = max;
+                document.getElementById('previewMinPrix').textContent = parseFloat(prixMin).toFixed(2);
+                document.getElementById('previewMaxPrix').textContent = parseFloat(prixMax).toFixed(2);
+                preview.style.display = 'block';
+            }
         }
 
-        function updateQuantity(planteId, nouvelleQuantite) {
-            if (selection[planteId]) {
-                selection[planteId].quantite = Math.max(1, nouvelleQuantite);
+        // Mise à jour de l'aperçu pour l'âge
+        function updateAgePreview() {
+            const min = document.getElementById('ageMin').value;
+            const max = document.getElementById('ageMax').value;
+            const prixMin = document.getElementById('prixAgeMin').value;
+            const prixMax = document.getElementById('prixAgeMax').value;
+            const preview = document.getElementById('agePreview');
+            
+            if (min && max && prixMin && prixMax) {
+                document.getElementById('previewMinAge').textContent = min;
+                document.getElementById('previewMaxAge').textContent = max;
+                document.getElementById('previewMinAgePrix').textContent = parseFloat(prixMin).toFixed(2);
+                document.getElementById('previewMaxAgePrix').textContent = parseFloat(prixMax).toFixed(2);
+                preview.style.display = 'block';
             }
         }
 
-        // Function to toggle description
-        window.toggleDescription = function(button, descriptionId) {
-            const description = document.getElementById(descriptionId);
-            const isExpanded = description.classList.contains('expanded');
-            
-            if (isExpanded) {
-                description.classList.remove('expanded');
-                button.innerHTML = 'Voir plus <span style="font-size:0.8rem;">▼</span>';
-            } else {
-                description.classList.add('expanded');
-                button.innerHTML = 'Voir moins <span style="font-size:0.8rem;">▲</span>';
-            }
-        };
+        // Écouteurs pour les mises à jour des aperçus
+        document.getElementById('tailleMin').addEventListener('input', updateTaillePreview);
+        document.getElementById('tailleMax').addEventListener('input', updateTaillePreview);
+        document.getElementById('prixMin').addEventListener('input', updateTaillePreview);
+        document.getElementById('prixMax').addEventListener('input', updateTaillePreview);
+        
+        document.getElementById('ageMin').addEventListener('input', updateAgePreview);
+        document.getElementById('ageMax').addEventListener('input', updateAgePreview);
+        document.getElementById('prixAgeMin').addEventListener('input', updateAgePreview);
+        document.getElementById('prixAgeMax').addEventListener('input', updateAgePreview);
 
-        // Render Products
-        function afficherPlantes(plantesData, categorieFiltre = 'tous') {
-            const container = document.getElementById('plantes-container');
-            container.innerHTML = '';
-            
-            const plantesArray = Object.entries(plantesData || {}).map(([id, data]) => ({ id, ...data }));
-            
-            let plantesFiltrees = plantesArray.filter(p => p.disponible !== false);
-            
-            if (categorieFiltre !== 'tous') {
-                plantesFiltrees = plantesFiltrees.filter(p => p.categorie === categorieFiltre);
+        // ============================================
+        // FONCTIONS DE RECHERCHE
+        // ============================================
+        
+        function filterPlantes(searchTerm) {
+            if (!searchTerm) {
+                return toutesLesPlantes;
             }
+            
+            const term = searchTerm.toLowerCase().trim();
+            
+            return toutesLesPlantes.filter(plante => {
+                // Recherche par ID personnalisé (avec ou sans #)
+                if (plante.idPerso && plante.idPerso.toLowerCase().includes(term)) {
+                    return true;
+                }
+                
+                // Recherche par ID personnalisé sans le #
+                const idWithoutHash = plante.idPerso ? plante.idPerso.substring(1) : '';
+                if (idWithoutHash.includes(term.replace('#', ''))) {
+                    return true;
+                }
+                
+                // Recherche par titre
+                if (plante.titre && plante.titre.toLowerCase().includes(term)) {
+                    return true;
+                }
+                
+                // Recherche par description
+                if (plante.description && plante.description.toLowerCase().includes(term)) {
+                    return true;
+                }
+                
+                return false;
+            });
+        }
 
+        function afficherPlantesFiltrees(searchTerm = '') {
+            const plantesFiltrees = filterPlantes(searchTerm);
+            const tbody = document.getElementById('plantesTableBody');
+            const statsDiv = document.getElementById('searchStats');
+            
             if (plantesFiltrees.length === 0) {
-                container.innerHTML = `
-                    <div class="state-message">
-                        <div class="state-message-icon">🌾</div>
-                        <h3>Aucune plante trouvée</h3>
-                        <p>Essayez une autre catégorie ou revenez plus tard</p>
-                    </div>
-                `;
+                tbody.innerHTML = `<tr><td colspan="9" style="text-align: center;">Aucune plante trouvée pour "${searchTerm}"</td></tr>`;
+                statsDiv.innerHTML = searchTerm ? `🔍 Recherche: "${searchTerm}" - 0 résultat` : '';
                 return;
             }
 
-            // Sort by custom ID
-            plantesFiltrees.sort((a, b) => {
-                if (a.idPerso && b.idPerso) return a.idPerso.localeCompare(b.idPerso);
-                return 0;
-            });
-
-            plantesFiltrees.forEach((plante, index) => {
-                const isSelected = !!selection[plante.id];
-                const card = document.createElement('div');
-                card.className = `product-card ${isSelected ? 'selected' : ''} animate-in`;
-                card.style.animationDelay = `${index * 0.05}s`;
-                
-                const imageUrl = plante.imageUrl || 'https://via.placeholder.com/400x300?text=Arbokech';
-                const prixTexte = plante.prix ? `${plante.prix.toFixed(2)} <span class="currency">DH</span>` : 'Sur demande';
-                
-                const categoryLabels = {
-                    'arbre': 'Arbre',
-                    'fleur': 'Fleur',
-                    'plante': 'Plante d\'intérieur'
-                };
-
-                const descriptionId = `desc-${plante.id}`;
-                const description = plante.description || 'Aucune description disponible';
-                const hasLongDescription = description.length > 100; // Show "voir plus" only for longer descriptions
-
-                card.innerHTML = `
-                    <div class="product-image-wrapper">
-                        <span class="product-category-tag">${categoryLabels[plante.categorie] || 'Plante'}</span>
-                        <span class="product-badge">${plante.idPerso || '#'}</span>
-                        <img src="${imageUrl}" 
-                             alt="${plante.titre || 'Plante'}" 
-                             class="product-image"
-                             onerror="this.src='https://via.placeholder.com/400x300?text=Image+non+disponible'">
-                    </div>
-                    <div class="product-content">
-                        <div class="product-header">
-                            <h3 class="product-title">${plante.titre || 'Sans titre'}</h3>
-                        </div>
-                        <div class="product-description">
-                            <div id="${descriptionId}" class="description-content">
-                                ${description}
-                            </div>
-                            ${hasLongDescription ? `
-                                <button class="voir-plus-btn" onclick="toggleDescription(this, '${descriptionId}')">
-                                    Voir plus <span style="font-size:0.8rem;">▼</span>
-                                </button>
-                            ` : ''}
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">${prixTexte}</div>
-                        </div>
-                        <div class="selection-area">
-                            <div class="selection-row">
-                                <label class="checkbox-wrapper" onclick="toggleCardSelection('${plante.id}', this)">
-                                    <div class="custom-checkbox ${isSelected ? 'checked' : ''}"></div>
-                                    <span>Sélectionner</span>
-                                    <input type="checkbox" class="select-checkbox" data-id="${plante.id}" 
-                                           ${isSelected ? 'checked' : ''} style="display: none;">
-                                </label>
-                                <div class="quantity-control ${isSelected ? 'active' : ''}">
-                                    <button class="qty-btn" data-id="${plante.id}" data-action="decrease" onclick="changeQty('${plante.id}', -1)">−</button>
-                                    <input type="number" class="qty-input" data-id="${plante.id}" 
-                                           value="${selection[plante.id]?.quantite || 1}" min="1" 
-                                           onchange="updateQtyInput('${plante.id}', this.value)">
-                                    <button class="qty-btn" data-id="${plante.id}" data-action="increase" onclick="changeQty('${plante.id}', 1)">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                container.appendChild(card);
-            });
-        }
-
-        // Event Handlers
-        window.toggleCardSelection = function(id, wrapper) {
-            const checkbox = wrapper.querySelector('.select-checkbox');
-            checkbox.checked = !checkbox.checked;
-            
-            const card = wrapper.closest('.product-card');
-            const qtyControl = card.querySelector('.quantity-control');
-            const customCheckbox = wrapper.querySelector('.custom-checkbox');
-            
-            if (checkbox.checked) {
-                card.classList.add('selected');
-                qtyControl.classList.add('active');
-                customCheckbox.classList.add('checked');
-            } else {
-                card.classList.remove('selected');
-                qtyControl.classList.remove('active');
-                customCheckbox.classList.remove('checked');
-            }
-            
-            const plante = toutesLesPlantes[id];
-            toggleSelection(id, plante.titre, plante.prix, plante.idPerso, checkbox.checked);
-        };
-
-        window.changeQty = function(id, delta) {
-            const input = document.querySelector(`.qty-input[data-id="${id}"]`);
-            let val = parseInt(input.value) + delta;
-            val = Math.max(1, val);
-            input.value = val;
-            updateQuantity(id, val);
-        };
-
-        window.updateQtyInput = function(id, val) {
-            val = parseInt(val) || 1;
-            val = Math.max(1, val);
-            document.querySelector(`.qty-input[data-id="${id}"]`).value = val;
-            updateQuantity(id, val);
-        };
-
-        // Filter Events
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.currentTarget.classList.add('active');
-                afficherPlantes(toutesLesPlantes, e.currentTarget.dataset.categorie);
-            });
-        });
-
-        // Order Logic
-        document.getElementById('commande-btn').addEventListener('click', afficherRecapitulatif);
-
-        function afficherRecapitulatif() {
-            const resumeDiv = document.getElementById('resume-commande');
             let html = '';
-            let total = 0;
             
-            for (let [id, item] of Object.entries(selection)) {
-                const sousTotal = (item.prix || 0) * item.quantite;
-                total += sousTotal;
+            plantesFiltrees.forEach(plante => {
+                const imageUrl = plante.imageUrl || 'https://via.placeholder.com/60';
+                
+                // Déterminer l'affichage du prix
+                let prixTexte = '';
+                if (plante.prix) {
+                    prixTexte = plante.prix.toFixed(2) + ' DH';
+                } else if (plante.tailleVariable) {
+                    prixTexte = `${plante.prixMin} - ${plante.prixMax} DH`;
+                } else if (plante.ageVariable) {
+                    prixTexte = `${plante.prixAgeMin} - ${plante.prixAgeMax} DH`;
+                } else {
+                    prixTexte = 'Sur demande';
+                }
+
+                // Déterminer les variables actives
+                let variableBadge = '';
+                if (plante.tailleVariable) {
+                    variableBadge = '<span class="badge badge-info">📏 Taille</span>';
+                }
+                if (plante.ageVariable) {
+                    variableBadge += ' <span class="badge badge-info">📅 Âge</span>';
+                }
+                
+                const idFirebaseCourt = plante.id.substring(0, 8);
                 
                 html += `
-                    <div class="order-item">
-                        <div class="order-item-info">
-                            <h4>${item.titre}</h4>
-                            <span>Ref: ${item.idPerso} × ${item.quantite}</span>
-                        </div>
-                        <div class="order-item-price">${sousTotal.toFixed(2)} DH</div>
-                    </div>
+                    <tr>
+                        <td><img src="${imageUrl}" alt="${plante.titre}" class="table-image" onerror="this.src='https://via.placeholder.com/60'"></td>
+                        <td>
+                            <span class="plante-id-custom">${plante.idPerso || '#'}</span>
+                            <div class="plante-id-firebase">FB: ${idFirebaseCourt}...</div>
+                        </td>
+                        <td><strong>${plante.titre || 'Sans titre'}</strong></td>
+                        <td>${(plante.description || '').substring(0, 50)}${plante.description && plante.description.length > 50 ? '...' : ''}</td>
+                        <td>${prixTexte}</td>
+                        <td>${variableBadge || '-'}</td>
+                        <td><span class="badge" style="background: #e2e8f0;">${plante.categorie || 'Non catégorisé'}</span></td>
+                        <td>
+                            <span class="badge ${plante.disponible !== false ? 'badge-success' : 'badge-danger'}">
+                                ${plante.disponible !== false ? 'Disponible' : 'Indisponible'}
+                            </span>
+                        </td>
+                        <td class="action-btns">
+                            <button class="action-btn edit" onclick="ouvrirModal('${plante.id}')">✏️ Modifier</button>
+                            <button class="action-btn delete" onclick="supprimerPlante('${plante.id}', '${plante.idPerso}')">🗑️ Supprimer</button>
+                        </td>
+                    </tr>
                 `;
-            }
+            });
             
-            resumeDiv.innerHTML = html || '<p style="text-align: center; color: var(--gray);">Aucune sélection</p>';
-            document.getElementById('modal-total').textContent = total.toFixed(2) + ' DH';
-            document.getElementById('commandeModal').classList.add('active');
+            tbody.innerHTML = html;
+            
+            if (searchTerm) {
+                statsDiv.innerHTML = `🔍 Recherche: "${searchTerm}" - ${plantesFiltrees.length} résultat(s) trouvé(s)`;
+            } else {
+                statsDiv.innerHTML = `📊 Total: ${toutesLesPlantes.length} plante(s) sur 9000 max`;
+            }
         }
 
-        window.fermerModal = function() {
-            document.getElementById('commandeModal').classList.remove('active');
+        // ============================================
+        // GESTION DE L'AUTHENTIFICATION
+        // ============================================
+        
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('loginContainer').style.display = 'none';
+                document.getElementById('adminContainer').style.display = 'block';
+                chargerDonnees();
+            } else {
+                document.getElementById('loginContainer').style.display = 'flex';
+                document.getElementById('adminContainer').style.display = 'none';
+            }
+        });
+
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            signInWithEmailAndPassword(auth, email, password)
+                .catch((error) => {
+                    document.getElementById('loginError').style.display = 'block';
+                });
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth);
+        });
+
+        // ============================================
+        // GESTION DES ONGLETS
+        // ============================================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                
+                e.target.classList.add('active');
+                
+                const tabId = e.target.dataset.tab;
+                if (tabId === 'plantes') {
+                    document.getElementById('tabPlantes').classList.add('active');
+                } else if (tabId === 'ids') {
+                    document.getElementById('tabIds').classList.add('active');
+                    mettreAJourAffichageIds();
+                } else if (tabId === 'config') {
+                    document.getElementById('tabConfig').classList.add('active');
+                }
+            });
+        });
+
+        // ============================================
+        // FONCTIONS DE CHARGEMENT
+        // ============================================
+        
+        function chargerDonnees() {
+            chargerPlantes();
+            chargerConfig();
+        }
+
+        function chargerPlantes() {
+            const plantesRef = ref(database, 'plantes');
+            
+            onValue(plantesRef, (snapshot) => {
+                const plantes = snapshot.val();
+                
+                if (!plantes) {
+                    toutesLesPlantes = [];
+                    initialiserIdsPossibles();
+                    idsUtilises.clear();
+                    mettreAJourAffichageIds();
+                    afficherPlantesFiltrees();
+                    return;
+                }
+
+                // Convertir l'objet en tableau
+                toutesLesPlantes = Object.entries(plantes).map(([id, data]) => ({
+                    id,
+                    ...data
+                })).sort((a, b) => {
+                    // Trier par ID personnalisé
+                    if (a.idPerso && b.idPerso) {
+                        return a.idPerso.localeCompare(b.idPerso);
+                    }
+                    return 0;
+                });
+
+                // Mettre à jour les IDs
+                mettreAJourIds(toutesLesPlantes);
+
+                // Afficher avec le terme de recherche actuel
+                const currentSearch = document.getElementById('searchInput').value;
+                afficherPlantesFiltrees(currentSearch);
+            });
+        }
+
+        function chargerConfig() {
+            const configRef = ref(database, 'config');
+            
+            onValue(configRef, (snapshot) => {
+                const config = snapshot.val() || {};
+                document.getElementById('configNom').value = config.nomPepiniere || '';
+                document.getElementById('configSlogan').value = config.slogan || '';
+                document.getElementById('configTel').value = config.telephone || '';
+                document.getElementById('configEmail').value = config.email || '';
+                document.getElementById('configAdresse').value = config.adresse || '';
+            });
+        }
+
+        // ============================================
+        // FONCTIONS CRUD
+        // ============================================
+
+        document.getElementById('ajouterPlanteBtn').addEventListener('click', async () => {
+            const prochainId = getProchainId();
+            
+            if (!prochainId) {
+                alert('❌ Limite de 9000 plantes atteinte ! Supprimez d\'abord des plantes pour libérer des IDs.');
+                return;
+            }
+
+            // Vérifier qu'on a soit un prix fixe, soit des options variables
+            const tailleVariable = document.getElementById('tailleVariable').checked;
+            const ageVariable = document.getElementById('ageVariable').checked;
+            const prixFixe = document.getElementById('newPrix').value;
+
+            if (!prixFixe && !tailleVariable && !ageVariable) {
+                alert('❌ Veuillez soit définir un prix fixe, soit activer une option variable (taille ou âge)');
+                return;
+            }
+
+            const nouvellePlante = {
+                idPerso: formaterId(prochainId),
+                titre: document.getElementById('newTitre').value,
+                description: document.getElementById('newDescription').value,
+                imageUrl: document.getElementById('newImageUrl').value,
+                categorie: document.getElementById('newCategorie').value,
+                disponible: document.getElementById('newDisponible').checked,
+                dateAjout: new Date().toISOString().split('T')[0]
+            };
+
+            // Gestion du prix fixe
+            if (prixFixe) {
+                nouvellePlante.prix = parseFloat(prixFixe);
+            }
+
+            // Gestion de la taille variable
+            if (tailleVariable) {
+                nouvellePlante.tailleVariable = true;
+                nouvellePlante.tailleMin = parseFloat(document.getElementById('tailleMin').value);
+                nouvellePlante.tailleMax = parseFloat(document.getElementById('tailleMax').value);
+                nouvellePlante.prixMin = parseFloat(document.getElementById('prixMin').value);
+                nouvellePlante.prixMax = parseFloat(document.getElementById('prixMax').value);
+                
+                if (!nouvellePlante.tailleMin || !nouvellePlante.tailleMax || !nouvellePlante.prixMin || !nouvellePlante.prixMax) {
+                    alert('❌ Veuillez remplir tous les champs pour la taille variable');
+                    return;
+                }
+            }
+
+            // Gestion de l'âge variable
+            if (ageVariable) {
+                nouvellePlante.ageVariable = true;
+                nouvellePlante.ageMin = parseFloat(document.getElementById('ageMin').value);
+                nouvellePlante.ageMax = parseFloat(document.getElementById('ageMax').value);
+                nouvellePlante.prixAgeMin = parseFloat(document.getElementById('prixAgeMin').value);
+                nouvellePlante.prixAgeMax = parseFloat(document.getElementById('prixAgeMax').value);
+                
+                if (!nouvellePlante.ageMin || !nouvellePlante.ageMax || !nouvellePlante.prixAgeMin || !nouvellePlante.prixAgeMax) {
+                    alert('❌ Veuillez remplir tous les champs pour l\'âge variable');
+                    return;
+                }
+            }
+
+            if (!nouvellePlante.titre || !nouvellePlante.imageUrl) {
+                alert('❌ Veuillez remplir le titre et l\'URL de l\'image');
+                return;
+            }
+
+            const plantesRef = ref(database, 'plantes');
+            push(plantesRef, nouvellePlante)
+                .then(() => {
+                    alert(`✅ Plante ajoutée avec succès ! ID: ${nouvellePlante.idPerso}`);
+                    
+                    // Réinitialiser le formulaire
+                    document.getElementById('newTitre').value = '';
+                    document.getElementById('newDescription').value = '';
+                    document.getElementById('newPrix').value = '';
+                    document.getElementById('newImageUrl').value = '';
+                    document.getElementById('newCategorie').value = 'arbre';
+                    document.getElementById('newDisponible').checked = true;
+                    
+                    // Réinitialiser les options variables
+                    document.getElementById('tailleVariable').checked = false;
+                    document.getElementById('tailleOptions').classList.remove('active');
+                    document.getElementById('taillePreview').style.display = 'none';
+                    
+                    document.getElementById('ageVariable').checked = false;
+                    document.getElementById('ageOptions').classList.remove('active');
+                    document.getElementById('agePreview').style.display = 'none';
+                    
+                    // Réinitialiser les champs
+                    document.getElementById('tailleMin').value = '';
+                    document.getElementById('tailleMax').value = '';
+                    document.getElementById('prixMin').value = '';
+                    document.getElementById('prixMax').value = '';
+                    document.getElementById('ageMin').value = '';
+                    document.getElementById('ageMax').value = '';
+                    document.getElementById('prixAgeMin').value = '';
+                    document.getElementById('prixAgeMax').value = '';
+                })
+                .catch(error => {
+                    alert('❌ Erreur : ' + error.message);
+                });
+        });
+
+        // ============================================
+        // FONCTIONS DE RECHERCHE (Événements)
+        // ============================================
+        
+        document.getElementById('searchBtn').addEventListener('click', () => {
+            const searchTerm = document.getElementById('searchInput').value;
+            afficherPlantesFiltrees(searchTerm);
+        });
+
+        document.getElementById('clearSearchBtn').addEventListener('click', () => {
+            document.getElementById('searchInput').value = '';
+            afficherPlantesFiltrees('');
+        });
+
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                afficherPlantesFiltrees(e.target.value);
+            }
+        });
+
+        document.getElementById('refreshIdsBtn').addEventListener('click', () => {
+            mettreAJourAffichageIds();
+        });
+
+        window.ouvrirModal = (id) => {
+            planteEnCoursDeModification = id;
+            
+            const planteRef = ref(database, 'plantes/' + id);
+            onValue(planteRef, (snapshot) => {
+                const plante = snapshot.val();
+                
+                document.getElementById('editTitre').value = plante.titre || '';
+                document.getElementById('editDescription').value = plante.description || '';
+                document.getElementById('editPrix').value = plante.prix || '';
+                document.getElementById('editImageUrl').value = plante.imageUrl || '';
+                document.getElementById('editCategorie').value = plante.categorie || 'arbre';
+                document.getElementById('editDisponible').checked = plante.disponible !== false;
+                
+                // Charger les options variables
+                if (plante.tailleVariable) {
+                    document.getElementById('editTailleVariable').checked = true;
+                    document.getElementById('editTailleOptions').classList.add('active');
+                    document.getElementById('editTailleMin').value = plante.tailleMin || '';
+                    document.getElementById('editTailleMax').value = plante.tailleMax || '';
+                    document.getElementById('editPrixMin').value = plante.prixMin || '';
+                    document.getElementById('editPrixMax').value = plante.prixMax || '';
+                } else {
+                    document.getElementById('editTailleVariable').checked = false;
+                    document.getElementById('editTailleOptions').classList.remove('active');
+                }
+                
+                if (plante.ageVariable) {
+                    document.getElementById('editAgeVariable').checked = true;
+                    document.getElementById('editAgeOptions').classList.add('active');
+                    document.getElementById('editAgeMin').value = plante.ageMin || '';
+                    document.getElementById('editAgeMax').value = plante.ageMax || '';
+                    document.getElementById('editAgePrixMin').value = plante.prixAgeMin || '';
+                    document.getElementById('editAgePrixMax').value = plante.prixAgeMax || '';
+                } else {
+                    document.getElementById('editAgeVariable').checked = false;
+                    document.getElementById('editAgeOptions').classList.remove('active');
+                }
+                
+                document.getElementById('editModal').classList.add('active');
+            }, { onlyOnce: true });
         };
 
-        document.getElementById('whatsapp-commande-btn').addEventListener('click', () => {
-            let message = "🌿 *NOUVELLE COMMANDE ARBOKECH* 🌿\n\n";
-            let total = 0;
-            
-            for (let [id, item] of Object.entries(selection)) {
-                const sousTotal = (item.prix || 0) * item.quantite;
-                total += sousTotal;
-                
-                message += `🔸 *${item.idPerso}* - ${item.titre}\n`;
-                message += `   📦 Quantité: ${item.quantite}\n`;
-                if (item.prix) {
-                    message += `   💰 Prix unitaire: ${item.prix.toFixed(2)} DH\n`;
-                }
-                message += `   💵 Sous-total: ${sousTotal.toFixed(2)} DH\n\n`;
+        window.fermerModal = () => {
+            document.getElementById('editModal').classList.remove('active');
+            planteEnCoursDeModification = null;
+        };
+
+        // Gestionnaires pour les toggles dans le modal
+        document.getElementById('editTailleVariable').addEventListener('change', function(e) {
+            if (e.target.checked) {
+                document.getElementById('editTailleOptions').classList.add('active');
+                document.getElementById('editPrix').disabled = true;
+                document.getElementById('editPrix').value = '';
+            } else {
+                document.getElementById('editTailleOptions').classList.remove('active');
+                document.getElementById('editPrix').disabled = false;
             }
-            
-            message += `💰 *TOTAL: ${total.toFixed(2)} DH*\n\n`;
-            message += "Merci de confirmer la disponibilité.";
-            
-            const messageEncode = encodeURIComponent(message);
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${messageEncode}`, '_blank');
-            fermerModal();
         });
 
-        // Close modal on outside click
-        document.getElementById('commandeModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) fermerModal();
+        document.getElementById('editAgeVariable').addEventListener('change', function(e) {
+            if (e.target.checked) {
+                document.getElementById('editAgeOptions').classList.add('active');
+                document.getElementById('editPrix').disabled = true;
+                document.getElementById('editPrix').value = '';
+            } else {
+                document.getElementById('editAgeOptions').classList.remove('active');
+                document.getElementById('editPrix').disabled = false;
+            }
         });
 
-        // Load Data
-        onValue(ref(database, 'plantes'), (snapshot) => {
-            const plantes = snapshot.val();
-            toutesLesPlantes = plantes || {};
-            const categorieActive = document.querySelector('.filter-btn.active').dataset.categorie;
-            afficherPlantes(toutesLesPlantes, categorieActive);
+        document.getElementById('saveEditBtn').addEventListener('click', () => {
+            if (!planteEnCoursDeModification) return;
+            
+            const modifications = {
+                titre: document.getElementById('editTitre').value,
+                description: document.getElementById('editDescription').value,
+                imageUrl: document.getElementById('editImageUrl').value,
+                categorie: document.getElementById('editCategorie').value,
+                disponible: document.getElementById('editDisponible').checked
+            };
+
+            // Gérer le prix fixe ou variable
+            const prixFixe = document.getElementById('editPrix').value;
+            const tailleVariable = document.getElementById('editTailleVariable').checked;
+            const ageVariable = document.getElementById('editAgeVariable').checked;
+
+            if (prixFixe) {
+                modifications.prix = parseFloat(prixFixe);
+                delete modifications.tailleVariable;
+                delete modifications.ageVariable;
+            } else if (tailleVariable) {
+                modifications.tailleVariable = true;
+                modifications.tailleMin = parseFloat(document.getElementById('editTailleMin').value);
+                modifications.tailleMax = parseFloat(document.getElementById('editTailleMax').value);
+                modifications.prixMin = parseFloat(document.getElementById('editPrixMin').value);
+                modifications.prixMax = parseFloat(document.getElementById('editPrixMax').value);
+                delete modifications.prix;
+                delete modifications.ageVariable;
+            } else if (ageVariable) {
+                modifications.ageVariable = true;
+                modifications.ageMin = parseFloat(document.getElementById('editAgeMin').value);
+                modifications.ageMax = parseFloat(document.getElementById('editAgeMax').value);
+                modifications.prixAgeMin = parseFloat(document.getElementById('editAgePrixMin').value);
+                modifications.prixAgeMax = parseFloat(document.getElementById('editAgePrixMax').value);
+                delete modifications.prix;
+                delete modifications.tailleVariable;
+            }
+
+            if (!modifications.titre || !modifications.imageUrl) {
+                alert('❌ Le titre et l\'URL de l\'image sont obligatoires');
+                return;
+            }
+
+            const planteRef = ref(database, 'plantes/' + planteEnCoursDeModification);
+            update(planteRef, modifications)
+                .then(() => {
+                    alert('✅ Plante modifiée avec succès !');
+                    fermerModal();
+                })
+                .catch(error => {
+                    alert('❌ Erreur : ' + error.message);
+                });
         });
+
+        window.supprimerPlante = (id, idPerso) => {
+            if (confirm(`🗑️ Êtes-vous sûr de vouloir supprimer la plante ${idPerso} ?`)) {
+                const planteRef = ref(database, 'plantes/' + id);
+                remove(planteRef)
+                    .then(() => {
+                        alert(`✅ Plante ${idPerso} supprimée. L'ID ${idPerso} est maintenant disponible pour réutilisation.`);
+                    })
+                    .catch(error => {
+                        alert('❌ Erreur : ' + error.message);
+                    });
+            }
+        };
+
+        document.getElementById('saveConfigBtn').addEventListener('click', () => {
+            const config = {
+                nomPepiniere: document.getElementById('configNom').value,
+                slogan: document.getElementById('configSlogan').value,
+                telephone: document.getElementById('configTel').value,
+                email: document.getElementById('configEmail').value,
+                adresse: document.getElementById('configAdresse').value
+            };
+
+            const configRef = ref(database, 'config');
+            set(configRef, config)
+                .then(() => {
+                    alert('✅ Configuration sauvegardée !');
+                })
+                .catch(error => {
+                    alert('❌ Erreur : ' + error.message);
+                });
+        });
+
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('editModal');
+            if (e.target === modal) {
+                fermerModal();
+            }
+        });
+
+        // Initialisation
+        initialiserIdsPossibles();
     </script>
 </body>
 </html>
