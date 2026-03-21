@@ -1,0 +1,10 @@
+# robots.txt pour Arbokech.com
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.arbokech.com/sitemap.xml
+
+# Dossiers à exclure (si besoin)
+Disallow: /admin/
+Disallow: /private/
